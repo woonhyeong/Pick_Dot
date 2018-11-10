@@ -7,9 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PixelView.h"
 
 @interface ViewController : UIViewController
 
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) NSMutableArray* pixelArray;
 
 @end
 
