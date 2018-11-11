@@ -15,5 +15,6 @@
 @property NSInteger column;
 
 - (id)initWithRow:(NSInteger)row Column:(NSInteger)column Color:(UIColor*)color;
+- (void)setBackgroundColor:(UIColor *)backgroundColor;
 @end
 

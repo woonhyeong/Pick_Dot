@@ -23,11 +23,8 @@
     return self;
 }
 
--(id)initOne {
-    if (self = [super init]) {
-        
-    }
-    return self;
+-(void)setBackgroundColor:(UIColor *)backgroundColor {
+    [self.layer setBackgroundColor:backgroundColor.CGColor];
+    [self setColor:backgroundColor];
 }
-
 @end
