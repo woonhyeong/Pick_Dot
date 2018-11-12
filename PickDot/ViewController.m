@@ -15,10 +15,13 @@ typedef enum _drawingState{
 #define PIXEL_MATRIX_SIZE 20
 @interface ViewController ()
 @property (nonatomic) UIColor *selectedColor;
+@property (weak, nonatomic) IBOutlet UILabel *selectedColorLabel;
 @property State drawingState;
 @end
 
 @implementation ViewController
+
+int prevSelectedIndexAtPixel = -1;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -40,6 +43,7 @@ typedef enum _drawingState{
     }
     return _pixelArray;
 }
+
 #pragma mark - Tap Gesture
 -(void)addTapGesture {
     UITapGestureRecognizer *tapGesture = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(pixelColorChange:)];
@@ -58,6 +62,8 @@ typedef enum _drawingState{
     if(selectedPixel.color != self.selectedColor){
         [selectedPixel setBackgroundColor:self.selectedColor];
     }
+    
+    [self selectPixelAtIndex:index];
 }
 
 
@@ -65,33 +71,21 @@ typedef enum _drawingState{
 -(void)makePixelInScrollView {
     [self.scrollView setFrame:CGRectMake(self.scrollView.frame.origin.x
                                          , self.scrollView.frame.origin.y, self.scrollView.frame.size.width, self.scrollView.frame.size.width)];
+    [self.scrollView.layer setBorderWidth:1.0];
+    [self.scrollView.layer setBorderColor:[[UIColor blackColor]CGColor]];
+    
     int width = self.scrollView.frame.size.width/PIXEL_MATRIX_SIZE;
     int height = self.scrollView.frame.size.height/PIXEL_MATRIX_SIZE;
     
     for (int i = 0; i < PIXEL_MATRIX_SIZE; i++) {
         for (int k = 0; k < PIXEL_MATRIX_SIZE; k++) {
             PixelView *pixel = [[PixelView alloc]initWithRow:k Column:i Color:UIColor.whiteColor];
-            pixel.layer.borderWidth = 1.0f;
-            pixel.layer.borderColor = [[UIColor darkGrayColor]CGColor];
+            pixel.layer.borderWidth = 0.5f;
+            pixel.layer.borderColor = [[UIColor lightGrayColor]CGColor];
             [pixel setFrame:CGRectMake(k*width, i*height, width, height)];
             [self.pixelArray addObject:pixel];
             [self.scrollView addSubview:pixel];
         }
-    }
-}
-
-- (IBAction)keyboardAction:(UIButton *)sender {
-}
-
-- (IBAction)changeDrawingState:(UIButton *)sender {
-    NSString* title = sender.titleLabel.text;
-    if ([title isEqualToString:@"Pen"]) {
-        self.drawingState = Pen;
-        [self setPenBorder:TRUE];
-    }else if ([title isEqualToString:@"Eraser"]){
-        self.drawingState = Eraser;
-        [self setEraserBorder:TRUE];
-        self.selectedColor = [UIColor clearColor];
     }
 }
 
@@ -112,9 +106,66 @@ typedef enum _drawingState{
         [self.buttonEraser setBackgroundColor:[UIColor clearColor]];
     }
 }
+
+-(void)selectPixelAtIndex:(NSInteger)index {
+    if(prevSelectedIndexAtPixel > 0){
+        PixelView* pixel = ((PixelView*)self.pixelArray[prevSelectedIndexAtPixel]);
+        pixel.layer.borderWidth = 0.5f;
+        pixel.layer.borderColor = [[UIColor darkGrayColor]CGColor];
+    }
+    PixelView* pixel = ((PixelView*)self.pixelArray[index]);
+    pixel.layer.borderWidth = 2.0f;
+    pixel.layer.borderColor = [[UIColor redColor]CGColor];
+    prevSelectedIndexAtPixel = (int)index;
+}
+
+#pragma mark - IBAction methods
+- (IBAction)keyboardAction:(UIButton *)sender {
+    NSString* title = sender.titleLabel.text;
+    
+    if ([title isEqualToString:@"L"]) {
+        if(prevSelectedIndexAtPixel%PIXEL_MATRIX_SIZE>0){
+            [self selectPixelAtIndex:(prevSelectedIndexAtPixel-1)];
+        }
+    } else if ([title isEqualToString:@"R"]){
+        if (prevSelectedIndexAtPixel%PIXEL_MATRIX_SIZE < 19) {
+            [self selectPixelAtIndex:(prevSelectedIndexAtPixel+1)];
+        }
+    } else if ([title isEqualToString:@"U"]){
+        if (prevSelectedIndexAtPixel > 19) {
+            [self selectPixelAtIndex:(prevSelectedIndexAtPixel-PIXEL_MATRIX_SIZE)];
+        }
+    } else if ([title isEqualToString:@"D"]){
+        if (prevSelectedIndexAtPixel < PIXEL_MATRIX_SIZE*PIXEL_MATRIX_SIZE - PIXEL_MATRIX_SIZE) {
+            [self selectPixelAtIndex:(prevSelectedIndexAtPixel+PIXEL_MATRIX_SIZE)];
+        }
+    } else if ([title isEqualToString:@"Draw"]){
+        PixelView* selectedPixel = ((PixelView*)self.pixelArray[prevSelectedIndexAtPixel]);
+        if(selectedPixel.color != self.selectedColor){
+            [selectedPixel setBackgroundColor:self.selectedColor];
+        }
+        
+        [self selectPixelAtIndex:prevSelectedIndexAtPixel];
+    }
+}
+
+- (IBAction)changeDrawingState:(UIButton *)sender {
+    NSString* title = sender.titleLabel.text;
+    if ([title isEqualToString:@"Pen"]) {
+        self.drawingState = Pen;
+        [self setPenBorder:TRUE];
+        self.selectedColor  = self.selectedColorLabel.backgroundColor;
+    }else if ([title isEqualToString:@"Eraser"]){
+        self.drawingState = Eraser;
+        [self setEraserBorder:TRUE];
+        self.selectedColor = [UIColor clearColor];
+    }
+}
+
 - (IBAction)changeSelectedColor:(UIButton *)sender {
     if(self.drawingState == Pen){
         self.selectedColor = sender.backgroundColor;
+        [self.selectedColorLabel setBackgroundColor:sender.backgroundColor];
     }
 }
 @end
