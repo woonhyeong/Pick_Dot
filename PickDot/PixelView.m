@@ -1,8 +1,8 @@
 //
 //  PixelView.m
-//  PickDot
+//  Pick_Dot
 //
-//  Created by 이운형 on 10/11/2018.
+//  Created by 이운형 on 15/11/2018.
 //  Copyright © 2018 201302458. All rights reserved.
 //
 
@@ -27,4 +27,6 @@
     [self.layer setBackgroundColor:backgroundColor.CGColor];
     [self setColor:backgroundColor];
 }
+
 @end
+
