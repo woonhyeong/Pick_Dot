@@ -7,16 +7,22 @@
 //
 
 #import "ViewController.h"
-
+#import "PixelView.h"
 @interface ViewController ()
-
+@property (nonatomic, weak) IBOutlet PixelView * basedPixelView;
 @end
 
 @implementation ViewController
 
+-(IBAction)buttontouch:(UIButton *)sender
+{
+    NSLog(@"Button TAG: %ld", sender.tag);
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
+    self.basedPixelView.vcDelegate =self;
 }
 
 #pragma mark - Delegate Methods

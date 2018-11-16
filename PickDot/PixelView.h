@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 @class PixelView;
+@class ViewController;
 
 @protocol PixelViewDelegate
 -(void) pixelTouched : (PixelView *)requestor;
@@ -19,7 +20,7 @@
 @property NSInteger row;
 @property NSInteger column;
 @property (assign) id<PixelViewDelegate> delegate;
-
+@property (nonatomic, weak) ViewController * vcDelegate;
 - (id)initWithRow:(NSInteger)row Column:(NSInteger)column Color:(UIColor*)color;
 - (void)setBackgroundColor:(UIColor *)backgroundColor;
 

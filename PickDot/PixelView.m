@@ -28,5 +28,28 @@
     [self setColor:backgroundColor];
 }
 
+- (void)drawRect:(CGRect)rect
+
+{
+    [super drawRect:rect];
+    
+    // Make Touched Button
+    UIButton * button = [[UIButton alloc]initWithFrame:self.frame];
+    
+//    [button addTarget:self action:@selector(buttonType) forControlEvents:(UIControlEventTouchUpInside)];
+    [button addTarget:self.vcDelegate action:@selector(buttontouch:) forControlEvents:(UIControlEventTouchUpInside)];
+    button.tag = 8;
+    
+    [self addSubview:button];
+    
+    [self setBackgroundColor:[UIColor yellowColor]];
+}
+
+- (void)buttonTouched {
+    NSLog(@"touched");
+}
+
+
+
 @end
 
