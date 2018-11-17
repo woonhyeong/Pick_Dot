@@ -17,12 +17,11 @@
 @interface PixelView : UIView
 
 @property UIColor* color;
-@property NSInteger row;
-@property NSInteger column;
+@property NSInteger index;
+
 @property (assign) id<PixelViewDelegate> delegate;
-@property (nonatomic, weak) ViewController * vcDelegate;
-- (id)initWithRow:(NSInteger)row Column:(NSInteger)column Color:(UIColor*)color;
-- (void)setBackgroundColor:(UIColor *)backgroundColor;
+
+- (id)initWithRow:(NSInteger)row AtIndex:(NSInteger)index Color:(UIColor*)color;
 
 @end
 

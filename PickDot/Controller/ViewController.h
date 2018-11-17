@@ -7,9 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "PixelView.h"
-#import "ColorView.h"
-#import "PixelBrain.h"
+#import "ScrollView.h"
 
 typedef enum _drawingState{
     Pen, Eraser
@@ -17,14 +15,11 @@ typedef enum _drawingState{
 
 @interface ViewController : UIViewController <UIGestureRecognizerDelegate, PixelViewDelegate>
 
-@property (nonatomic) NSMutableArray *pixelArray;
-@property (weak, nonatomic) UIColor *selectedColor;
-
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet ScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property State drawingState;
--(IBAction)buttontouch:(UIButton *)sender;
+
 @end
 
 
