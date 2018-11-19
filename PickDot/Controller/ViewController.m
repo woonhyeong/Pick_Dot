@@ -7,7 +7,10 @@
 //
 
 #import "ViewController.h"
+<<<<<<< HEAD:PickDot/Controller/ViewController.m
 #import "PixelView.h"
+=======
+>>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/ViewController.m
 
 @interface ViewController ()
 
