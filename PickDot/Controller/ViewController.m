@@ -10,19 +10,27 @@
 #import "PixelView.h"
 
 @interface ViewController ()
-
+@property (weak, nonatomic) IBOutlet PixelView* pixel;
 @end
 
 @implementation ViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    self.pixel.vcDelegate = self;
 }
 
 #pragma mark - Delegate Methods
 -(void) pixelTouched : (PixelView *)requestor {
     NSLog(@"Tap Test");
 }
+
+-(IBAction)buttontouch:(UIButton *)sender
+{
+    if ([[sender superview] isKindOfClass:[PixelView class]]) {
+        NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
+    }
+}
+
 @end
 

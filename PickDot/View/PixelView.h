@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class PixelView;
 @class ViewController;
 
@@ -21,6 +22,7 @@
 
 @property (assign) id<PixelViewDelegate> delegate;
 
+@property (nonatomic, weak) ViewController * vcDelegate;
 - (id)initWithRow:(NSInteger)row AtIndex:(NSInteger)index Color:(UIColor*)color;
 
 @end

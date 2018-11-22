@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "ScrollView.h"
+#import "PixelView.h"
 
 typedef enum _drawingState{
     Pen, Eraser
@@ -20,6 +21,7 @@ typedef enum _drawingState{
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property State drawingState;
 
+-(IBAction)buttontouch:(UIButton *)sender;
 @end
 
 
