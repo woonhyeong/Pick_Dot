@@ -7,7 +7,13 @@
 //
 
 #import "ViewController.h"
+<<<<<<< HEAD:PickDot/Controller/ViewController.m
+<<<<<<< HEAD:PickDot/Controller/ViewController.m
 #import "PixelView.h"
+=======
+>>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/ViewController.m
+=======
+>>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/ViewController.m
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet PixelView* pixel;

@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 
 @class PixelView;
-@class ViewController;
 
 @protocol PixelViewDelegate
 -(void) pixelTouched : (PixelView *)requestor;
@@ -22,8 +21,19 @@
 
 @property (assign) id<PixelViewDelegate> delegate;
 
+<<<<<<< HEAD
 @property (nonatomic, weak) ViewController * vcDelegate;
+=======
+<<<<<<< HEAD:PickDot/View/PixelView.h
+<<<<<<< HEAD:PickDot/View/PixelView.h
+>>>>>>> 7793580201e35a87e0b36f80ae2d802732fd9c12
 - (id)initWithRow:(NSInteger)row AtIndex:(NSInteger)index Color:(UIColor*)color;
+=======
+=======
+>>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/PixelView.h
+- (id)initWithRow:(NSInteger)row Column:(NSInteger)column Color:(UIColor*)color;
+- (void)setBackgroundColor:(UIColor *)backgroundColor;
+>>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/PixelView.h
 
 @end
 
