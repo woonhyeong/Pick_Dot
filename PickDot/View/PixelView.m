@@ -14,7 +14,7 @@
 @implementation PixelView
 
 #pragma mark - initialization
-- (id)initWithRow:(NSInteger)row AtIndex:(NSInteger)index Color:(UIColor*)color
+- (id)initWithIndex:(NSInteger)index Color:(UIColor*)color
 {
     self = [super init];
     if (self)
@@ -25,22 +25,22 @@
     return self;
 }
 
-- (void)drawRect:(CGRect)rect {
-    [super drawRect:rect];
-    
+-(void)drawSelfView {
     // Make Touched Button
     UIButton* button = [[UIButton alloc]initWithFrame:self.bounds];
     [button addTarget:self.vcDelegate action:@selector(buttontouch:) forControlEvents:UIControlEventTouchUpInside];
-    [self addSubview:button];    
+    [self addSubview:button];
     self.layer.borderWidth = 0.5f;
     self.layer.borderColor = [[UIColor lightGrayColor]CGColor];
-    self.layer.backgroundColor = [UIColor yellowColor].CGColor;
-    [button setBackgroundColor:[UIColor yellowColor]];
 }
 
-- (void)buttonTouched {
-    [self.delegate pixelTouched:self];
+- (void)drawRect:(CGRect)rect {
+    [super drawRect:rect];
 }
+
+//- (void)buttonTouched {
+//    [self.delegate pixelTouched:self];
+//}
 
 @end
 

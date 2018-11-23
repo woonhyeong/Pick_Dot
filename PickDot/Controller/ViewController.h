@@ -8,15 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "ScrollView.h"
+#import "ContentView.h"
 #import "PixelView.h"
 
 typedef enum _drawingState{
     Pen, Eraser
 }State;
 
-@interface ViewController : UIViewController <UIGestureRecognizerDelegate, PixelViewDelegate>
+@interface ViewController : UIViewController <UIGestureRecognizerDelegate>
 
-@property (weak, nonatomic) IBOutlet ScrollView *scrollView;
+@property (nonatomic) IBOutlet UIScrollView *scrollView;
+@property (nonatomic) IBOutlet ContentView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property State drawingState;

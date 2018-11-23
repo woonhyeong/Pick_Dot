@@ -10,23 +10,15 @@
 
 @implementation ScrollView
 
--(NSMutableArray*)pixelArray {
-    if(_pixelArray == nil){
-        _pixelArray = [[NSMutableArray alloc]init];
+-(id)init {
+    self = [super init];
+    if(self){
+        [self.layer setBorderWidth:0.5f];
+        [self.layer setBorderColor:[UIColor blackColor].CGColor];
+        self.minimumZoomScale = 0.5f;
+        self.maximumZoomScale = 2.0f;
     }
-    return _pixelArray;
-}
-
--(UIColor*)selectedColor {
-    if (_selectedColor == nil) {
-        _selectedColor = [UIColor clearColor];
-    }
-    return _selectedColor;
-}
-
--(void)drawRect:(CGRect)rect{
-    [super drawRect:rect];
-    
+    return self;
 }
 
 @end

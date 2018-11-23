@@ -10,9 +10,5 @@
 
 @interface ScrollView : UIScrollView <UIScrollViewDelegate>
 
-@property (nonatomic) NSMutableArray *pixelArray;
-@property (weak, nonatomic) UIColor *selectedColor;
-@property (nonatomic) NSInteger matrixSize;
-
 @end
 

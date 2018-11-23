@@ -7,13 +7,7 @@
 //
 
 #import "ViewController.h"
-<<<<<<< HEAD:PickDot/Controller/ViewController.m
-<<<<<<< HEAD:PickDot/Controller/ViewController.m
 #import "PixelView.h"
-=======
->>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/ViewController.m
-=======
->>>>>>> parent of d1a95c2... [added tap action pixelView]:PickDot/ViewController.m
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet PixelView* pixel;
@@ -24,11 +18,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.pixel.vcDelegate = self;
-}
-
-#pragma mark - Delegate Methods
--(void) pixelTouched : (PixelView *)requestor {
-    NSLog(@"Tap Test");
+    [self.contentView setFrame:CGRectMake(0, 0, 400, 400)];
+    [self.scrollView addSubview:self.contentView];
+    self.scrollView.contentSize = self.contentView.bounds.size;
 }
 
 -(IBAction)buttontouch:(UIButton *)sender
@@ -36,6 +28,25 @@
     if ([[sender superview] isKindOfClass:[PixelView class]]) {
         NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
     }
+}
+
+#pragma mark - Getter & Setter
+-(ContentView *)contentView {
+    if (_contentView == nil) {
+        _contentView = [[ContentView alloc]init];
+    }
+    return _contentView;
+}
+
+-(UIScrollView *)scrollView {
+    if (_scrollView == nil) {
+        _scrollView = [[UIScrollView alloc]init];
+    }
+    return _scrollView;
+}
+#pragma mark - Delegate Methods
+-(void) pixelTouched : (PixelView *)requestor {
+    NSLog(@"%li",requestor.index);
 }
 
 @end
