@@ -9,7 +9,13 @@
 #import "ContentView.h"
 
 #define DEFAULT_MATRIX_SIZE 20
+@interface ContentView()
+
+@end
+
 @implementation ContentView
+#pragma mark - Local Variables
+int prevSelectedPixelIndex = -1;
 
 #pragma mark - Initialization
 -(id)init {
@@ -62,4 +68,16 @@
     }
 }
 
+#pragma mark - Public Methods
+-(void)selectPixelAtIndex:(NSInteger)index {
+    if(prevSelectedPixelIndex >= 0){
+        PixelView* pixel = ((PixelView*)self.pixelArray[prevSelectedPixelIndex]);
+        pixel.layer.borderWidth = 0.5f;
+        pixel.layer.borderColor = [[UIColor darkGrayColor]CGColor];
+    }
+    PixelView* pixel = ((PixelView*)self.pixelArray[index]);
+    pixel.layer.borderWidth = 2.0f;
+    pixel.layer.borderColor = [[UIColor redColor]CGColor];
+    prevSelectedPixelIndex = (int)index;
+}
 @end

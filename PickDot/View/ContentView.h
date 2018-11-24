@@ -15,4 +15,5 @@
 @property (weak, nonatomic) UIColor *selectedColor;
 @property (nonatomic) NSInteger matrixSize;
 
+-(void)selectPixelAtIndex:(NSInteger)index;
 @end

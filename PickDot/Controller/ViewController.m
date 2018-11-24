@@ -28,6 +28,7 @@
     if ([[sender superview] isKindOfClass:[PixelView class]]) {
         NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
     }
+    [self.contentView selectPixelAtIndex:((PixelView*)[sender superview]).index];
 }
 
 #pragma mark - Getter & Setter
