@@ -21,9 +21,14 @@ typedef enum _drawingState{
 @property (nonatomic) IBOutlet ContentView *contentView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
+@property (weak, nonatomic) IBOutlet UIButton *buttonMenu;
+@property (weak, nonatomic) IBOutlet UIButton *buttonColor;
 @property State drawingState;
 
--(IBAction)buttontouch:(UIButton *)sender;
+- (IBAction)menuButtonTouched:(UIButton *)sender;
+- (IBAction)colorButtonTouched:(UIButton *)sender;
+- (IBAction)buttontouch:(UIButton *)sender;
+
 @end
 
 

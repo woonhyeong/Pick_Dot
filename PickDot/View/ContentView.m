@@ -73,11 +73,12 @@ int prevSelectedPixelIndex = -1;
     if(prevSelectedPixelIndex >= 0){
         PixelView* pixel = ((PixelView*)self.pixelArray[prevSelectedPixelIndex]);
         pixel.layer.borderWidth = 0.5f;
-        pixel.layer.borderColor = [[UIColor darkGrayColor]CGColor];
+        pixel.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     }
     PixelView* pixel = ((PixelView*)self.pixelArray[index]);
     pixel.layer.borderWidth = 2.0f;
     pixel.layer.borderColor = [[UIColor redColor]CGColor];
     prevSelectedPixelIndex = (int)index;
 }
+
 @end

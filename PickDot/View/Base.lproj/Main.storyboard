@@ -85,25 +85,26 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99545651670000002" green="0.46532930760000002" blue="0.31807929190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="menu"/>
+                                <connections>
+                                    <action selector="menuButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="xYS-JS-T3h"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMn-Gm-Ihk">
                                 <rect key="frame" x="210" y="586" width="35" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99545651670000002" green="0.46532930760000002" blue="0.31807929190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <state key="normal" title="color"/>
+                                <connections>
+                                    <action selector="colorButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="C11-3s-uFQ"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-gZ-Vnw">
-                                <rect key="frame" x="245" y="586" width="30" height="30"/>
+                                <rect key="frame" x="250" y="591" width="20" height="20"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.99545651670000002" green="0.89959458459999997" blue="0.43480617729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                                        <integer key="value" value="50"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lt3-eh-adQ">
                                 <rect key="frame" x="288" y="453" width="48" height="30"/>
@@ -133,7 +134,11 @@
                         <viewLayoutGuide key="safeArea" id="gbs-b5-5p1"/>
                     </view>
                     <connections>
+                        <outlet property="buttonColor" destination="AMn-Gm-Ihk" id="OFT-oT-3S0"/>
+                        <outlet property="buttonMenu" destination="YSo-Gc-CiL" id="Cim-Dm-Yp5"/>
+                        <outlet property="buttonPen" destination="hlt-9Z-suC" id="Qb2-qr-K3W"/>
                         <outlet property="scrollView" destination="999-ry-PUZ" id="ksK-gB-bbS"/>
+                        <outlet property="selectedColor" destination="ZhZ-gZ-Vnw" id="lzO-R5-8YU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaB-uh-hOq" sceneMemberID="firstResponder"/>
