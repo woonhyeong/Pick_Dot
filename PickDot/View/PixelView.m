@@ -28,7 +28,7 @@
 -(void)drawSelfView {
     // Make Touched Button
     UIButton* button = [[UIButton alloc]initWithFrame:self.bounds];
-    [button addTarget:self.vcDelegate action:@selector(buttontouch:) forControlEvents:UIControlEventTouchUpInside];
+    [button addTarget:self.vcDelegate action:@selector(pixelTouch:) forControlEvents:UIControlEventTouchUpInside];
     [self addSubview:button];
     self.layer.borderWidth = 0.5f;
     self.layer.borderColor = [[UIColor lightGrayColor]CGColor];

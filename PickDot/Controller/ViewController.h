@@ -17,17 +17,18 @@ typedef enum _drawingState{
 
 @interface ViewController : UIViewController <UIGestureRecognizerDelegate>
 
-@property (nonatomic) IBOutlet UIScrollView *scrollView;
-@property (nonatomic) IBOutlet ContentView *contentView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMenu;
 @property (weak, nonatomic) IBOutlet UIButton *buttonColor;
 @property State drawingState;
 
+- (IBAction)pixelTouch:(UIButton *)sender;
 - (IBAction)menuButtonTouched:(UIButton *)sender;
 - (IBAction)colorButtonTouched:(UIButton *)sender;
-- (IBAction)buttontouch:(UIButton *)sender;
+- (IBAction)penButtonTouched:(UIButton *)sender;
+- (IBAction)eraserButtonTouched:(UIButton *)sender;
 
 @end
 

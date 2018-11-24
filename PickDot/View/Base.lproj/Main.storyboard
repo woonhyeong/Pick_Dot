@@ -79,6 +79,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="penButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="mln-AR-bsj"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSo-Gc-CiL">
                                 <rect key="frame" x="148" y="586" width="39" height="30"/>
@@ -116,6 +119,9 @@
                                         <integer key="value" value="5"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="eraserButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="4Fx-V7-A4V"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNP-pB-3A7">
                                 <rect key="frame" x="56" y="486" width="40" height="40"/>

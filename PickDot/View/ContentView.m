@@ -14,14 +14,14 @@
 @end
 
 @implementation ContentView
-#pragma mark - Local Variables
-int prevSelectedPixelIndex = -1;
 
 #pragma mark - Initialization
 -(id)init {
     self = [super init];
     if(self){
         [self setFrame:CGRectMake(0, 0, DEFAULT_MATRIX_SIZE*DEFAULT_MATRIX_SIZE, DEFAULT_MATRIX_SIZE*DEFAULT_MATRIX_SIZE)];
+        self.prevSelectedPixelIndex = -1;
+        [self makePixel];
     }
     return self;
 }
@@ -30,7 +30,6 @@ int prevSelectedPixelIndex = -1;
 -(NSMutableArray*)pixelArray {
     if(_pixelArray == nil){
         _pixelArray = [[NSMutableArray alloc]init];
-        [self makePixel];
     }
     return _pixelArray;
 }
@@ -57,28 +56,35 @@ int prevSelectedPixelIndex = -1;
             [pixel setFrame:CGRectMake(k*self.matrixSize,i*self.matrixSize, 20, 20)];
             [pixel drawSelfView];
             [self.pixelArray addObject:pixel];
+            [self addSubview:pixel];
         }
     }
 }
 
 -(void)drawRect:(CGRect)rect{
     [super drawRect:rect];
-    for (int i = 0; i < [self.pixelArray count]; i++) {
-        [self addSubview:self.pixelArray[i]];
-    }
+    
 }
 
 #pragma mark - Public Methods
 -(void)selectPixelAtIndex:(NSInteger)index {
-    if(prevSelectedPixelIndex >= 0){
-        PixelView* pixel = ((PixelView*)self.pixelArray[prevSelectedPixelIndex]);
+    if(self.prevSelectedPixelIndex >= 0){
+        PixelView* pixel = ((PixelView*)self.pixelArray[self.prevSelectedPixelIndex]);
         pixel.layer.borderWidth = 0.5f;
         pixel.layer.borderColor = [[UIColor lightGrayColor]CGColor];
     }
     PixelView* pixel = ((PixelView*)self.pixelArray[index]);
     pixel.layer.borderWidth = 2.0f;
     pixel.layer.borderColor = [[UIColor redColor]CGColor];
-    prevSelectedPixelIndex = (int)index;
+    self.prevSelectedPixelIndex = index;
+    
+    NSLog(@"%ld",self.prevSelectedPixelIndex);
 }
 
+-(void)drawColorToPixel:(UIColor *)color {
+    if (self.prevSelectedPixelIndex >= 0) {
+        [((PixelView*)self.pixelArray[self.prevSelectedPixelIndex]) setBackgroundColor:color];
+        [self setNeedsDisplay];
+    }
+}
 @end

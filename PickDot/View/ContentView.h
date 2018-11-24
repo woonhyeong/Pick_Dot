@@ -14,6 +14,8 @@
 @property (nonatomic, strong) NSMutableArray *pixelArray;
 @property (weak, nonatomic) UIColor *selectedColor;
 @property (nonatomic) NSInteger matrixSize;
+@property (nonatomic) NSInteger prevSelectedPixelIndex;
 
 -(void)selectPixelAtIndex:(NSInteger)index;
+-(void)drawColorToPixel:(UIColor *)color;
 @end

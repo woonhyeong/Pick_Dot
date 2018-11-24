@@ -11,7 +11,9 @@
 #import "NKOColorPickerView.h"
 
 @interface ViewController ()
-@property (weak,nonatomic) IBOutlet UILabel *selectedColor;
+@property (nonatomic) IBOutlet ContentView *contentView;
+@property (weak, nonatomic) IBOutlet UILabel *selectedColorLabel;
+@property (weak, nonatomic) UIColor* selectedColor;
 @property (nonatomic) NKOColorPickerView *colorPickerView;
 @end
 
@@ -32,27 +34,12 @@
     [self.view addSubview:self.colorPickerView];
 }
 
--(IBAction)buttontouch:(UIButton *)sender
-{
-    if ([[sender superview] isKindOfClass:[PixelView class]]) {
-        NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
-    }
-    [self.contentView selectPixelAtIndex:((PixelView*)[sender superview]).index];
-}
-
 #pragma mark - Getter & Setter
 -(ContentView *)contentView {
     if (_contentView == nil) {
         _contentView = [[ContentView alloc]init];
     }
     return _contentView;
-}
-
--(UIScrollView *)scrollView {
-    if (_scrollView == nil) {
-        _scrollView = [[UIScrollView alloc]init];
-    }
-    return _scrollView;
 }
 
 -(NKOColorPickerView *)colorPickerView {
@@ -84,16 +71,33 @@
     }
 }
 
+-(IBAction)pixelTouch:(UIButton *)sender
+{
+    if ([[sender superview] isKindOfClass:[PixelView class]]) {
+        NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
+        [self.contentView selectPixelAtIndex:((PixelView*)[sender superview]).index];
+    }
+}
+
+- (IBAction)penButtonTouched:(UIButton *)sender {
+    [self.contentView drawColorToPixel:self.selectedColor];
+}
+
+- (IBAction)eraserButtonTouched:(UIButton *)sender {
+}
 #pragma mark - Priavate Methods
 - (void)makeUI {
-    [self.selectedColor.layer setBorderWidth:1.0f];
-    [self.selectedColor.layer setBorderColor:[UIColor lightGrayColor].CGColor];
-    [self.selectedColor.layer setCornerRadius:0.5 * self.selectedColor.bounds.size.width];
-    [self.selectedColor setBackgroundColor:[UIColor clearColor]];
+    [self.selectedColorLabel.layer setBorderWidth:1.0f];
+    [self.selectedColorLabel.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    [self.selectedColorLabel.layer setCornerRadius:0.5 * self.selectedColorLabel.bounds.size.width];
+    [self.selectedColorLabel setBackgroundColor:[UIColor clearColor]];
+    self.selectedColor = [UIColor clearColor];
 }
 
 -(void)changeColorAction:(UIColor *)color{
-    [self.selectedColor.layer setBackgroundColor:self.colorPickerView.color.CGColor];
+    [self.selectedColorLabel.layer setBackgroundColor:self.colorPickerView.color.CGColor];
+    [self.contentView setSelectedColor:self.colorPickerView.color];
+    self.selectedColor = color;
 }
 
 #pragma mark - Delegate Methods
