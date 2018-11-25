@@ -16,7 +16,7 @@ typedef enum _drawingState{
     Left, Right, Up, Down
 } Direction;
 
-@interface ViewController : UIViewController <UIGestureRecognizerDelegate>
+@interface ViewController : UIViewController <UIGestureRecognizerDelegate, TableDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;

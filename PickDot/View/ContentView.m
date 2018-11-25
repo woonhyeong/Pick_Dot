@@ -87,7 +87,7 @@
 
 -(void)moveSelectedPixelAtIndex:(NSInteger)direction {
     /*
-     0 : left  | 1 : right | 2 : up | 3 : down
+     0: left  1: right  2: up  3: down
      */
     if(self.prevSelectedPixelIndex >= 0){
         switch (direction) {

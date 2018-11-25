@@ -8,9 +8,17 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol TableDelegate <NSObject>
+@required
+- (void)savePixelTable;
+- (void)openPixelTable;
+- (void)newOpenPixelTable:(NSInteger)matrixSize;
+@end
+
 @interface TableViewController : UITableViewController
 
 @property (nonatomic) NSArray* menu;
+@property (nonatomic, assign) id<TableDelegate> delegate;
 
 @end
 

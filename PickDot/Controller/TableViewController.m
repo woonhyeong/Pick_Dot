@@ -50,8 +50,25 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellid forIndexPath:indexPath];
     NSString* cellTitle = self.menu[indexPath.row];
     cell.textLabel.text = cellTitle;
+    cell.textLabel.textAlignment = NSTextAlignmentCenter;
     
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    /*
+     0: New  1: Save  2: Open
+     */
+    switch (indexPath.row) {
+        case 0:
+            break;
+        case 1:
+            break;
+        case 2:
+            break;
+        default:
+            break;
+    }
 }
 
 /*

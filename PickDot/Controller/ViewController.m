@@ -133,15 +133,25 @@
 
 -(void)loadTableViewController {
     _menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tableViewController"];
+    _menuViewController.delegate = self;
     [_menuViewController.view setFrame:self.scrollView.frame];
     [self addChildViewController:_menuViewController];
     [self.view addSubview:_menuViewController.view];
     [_menuViewController didMoveToParentViewController:self];
     
 }
+
 #pragma mark - Delegate Methods
-- (void) pixelTouched : (PixelView *)requestor {
-    NSLog(@"%li",requestor.index);
+- (void)savePixelTable {
+    
+}
+
+- (void)openPixelTable {
+    
+}
+
+- (void)newOpenPixelTable:(NSInteger)matrixSize {
+    
 }
 
 @end
