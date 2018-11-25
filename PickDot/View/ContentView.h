@@ -17,5 +17,7 @@
 @property (nonatomic) NSInteger prevSelectedPixelIndex;
 
 -(void)selectPixelAtIndex:(NSInteger)index;
--(void)drawColorToPixel:(UIColor *)color;
+-(void)drawColorToPixel;
+-(void)moveSelectedPixelAtIndex:(NSInteger)direction;
+
 @end

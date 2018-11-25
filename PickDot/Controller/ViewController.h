@@ -12,8 +12,8 @@
 #import "PixelView.h"
 
 typedef enum _drawingState{
-    Pen, Eraser
-}State;
+    Left, Right, Up, Down
+} Direction;
 
 @interface ViewController : UIViewController <UIGestureRecognizerDelegate>
 
@@ -22,14 +22,13 @@ typedef enum _drawingState{
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMenu;
 @property (weak, nonatomic) IBOutlet UIButton *buttonColor;
-@property State drawingState;
 
 - (IBAction)pixelTouch:(UIButton *)sender;
 - (IBAction)menuButtonTouched:(UIButton *)sender;
 - (IBAction)colorButtonTouched:(UIButton *)sender;
 - (IBAction)penButtonTouched:(UIButton *)sender;
 - (IBAction)eraserButtonTouched:(UIButton *)sender;
-
+- (IBAction)arrowButtonTouched:(UIButton *)sender;
 @end
 
 

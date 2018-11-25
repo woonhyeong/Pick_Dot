@@ -77,14 +77,43 @@
     pixel.layer.borderWidth = 2.0f;
     pixel.layer.borderColor = [[UIColor redColor]CGColor];
     self.prevSelectedPixelIndex = index;
-    
-    NSLog(@"%ld",self.prevSelectedPixelIndex);
 }
 
--(void)drawColorToPixel:(UIColor *)color {
+-(void)drawColorToPixel {
     if (self.prevSelectedPixelIndex >= 0) {
-        [((PixelView*)self.pixelArray[self.prevSelectedPixelIndex]) setBackgroundColor:color];
-        [self setNeedsDisplay];
+        [((PixelView*)self.pixelArray[self.prevSelectedPixelIndex]) setBackgroundColor:self.selectedColor];
+    }
+}
+
+-(void)moveSelectedPixelAtIndex:(NSInteger)direction {
+    /*
+     0 : left  | 1 : right | 2 : up | 3 : down
+     */
+    if(self.prevSelectedPixelIndex >= 0){
+        switch (direction) {
+            case 0:
+                if (self.prevSelectedPixelIndex%self.matrixSize > 0 ) {
+                    [self selectPixelAtIndex:self.prevSelectedPixelIndex-1];
+                }
+                break;
+            case 1:
+                if (self.prevSelectedPixelIndex%self.matrixSize < self.matrixSize-1 ) {
+                    [self selectPixelAtIndex:self.prevSelectedPixelIndex+1];
+                }
+                break;
+            case 2:
+                if (self.prevSelectedPixelIndex > self.matrixSize-1 ) {
+                    [self selectPixelAtIndex:self.prevSelectedPixelIndex - self.matrixSize];
+                }
+                break;
+            case 3:
+                if (self.prevSelectedPixelIndex < self.matrixSize*self.matrixSize - self.matrixSize ) {
+                    [self selectPixelAtIndex:self.prevSelectedPixelIndex + self.matrixSize];
+                }
+                break;
+            default:
+                break;
+        }
     }
 }
 @end

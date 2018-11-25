@@ -11,10 +11,12 @@
 #import "NKOColorPickerView.h"
 
 @interface ViewController ()
+
 @property (nonatomic) IBOutlet ContentView *contentView;
 @property (weak, nonatomic) IBOutlet UILabel *selectedColorLabel;
 @property (weak, nonatomic) UIColor* selectedColor;
 @property (nonatomic) NKOColorPickerView *colorPickerView;
+
 @end
 
 @implementation ViewController
@@ -80,10 +82,27 @@
 }
 
 - (IBAction)penButtonTouched:(UIButton *)sender {
-    [self.contentView drawColorToPixel:self.selectedColor];
+    [self.contentView setSelectedColor:self.selectedColor];
+    [self.contentView drawColorToPixel];
 }
 
 - (IBAction)eraserButtonTouched:(UIButton *)sender {
+    [self.contentView setSelectedColor:[UIColor clearColor]];
+    [self.contentView drawColorToPixel];
+}
+
+- (IBAction)arrowButtonTouched:(UIButton *)sender {
+    NSString* buttonTitle = sender.titleLabel.text;
+    
+    if ([buttonTitle isEqualToString:@"left"]) {
+        [self.contentView moveSelectedPixelAtIndex:Left];
+    } else if ([buttonTitle isEqualToString:@"right"]){
+        [self.contentView moveSelectedPixelAtIndex:Right];
+    } else if ([buttonTitle isEqualToString:@"up"]){
+        [self.contentView moveSelectedPixelAtIndex:Up];
+    } else if ([buttonTitle isEqualToString:@"down"]){
+        [self.contentView moveSelectedPixelAtIndex:Down];
+    }
 }
 #pragma mark - Priavate Methods
 - (void)makeUI {
