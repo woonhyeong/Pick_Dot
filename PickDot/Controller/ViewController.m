@@ -34,6 +34,7 @@
     self.scrollView.maximumZoomScale = 2.0f;
     
     [self.view addSubview:self.colorPickerView];
+    [self loadTableViewController];
 }
 
 #pragma mark - Getter & Setter
@@ -61,14 +62,25 @@
 
 #pragma mark - IBAction Methods
 - (IBAction)menuButtonTouched:(UIButton *)sender {
+    if ([self.menuViewController.view isHidden]) {
+        [self.scrollView setHidden:YES];
+        [self.menuViewController.view setHidden:NO];
+        [self.colorPickerView setHidden:YES];
+    } else {
+        [self.scrollView setHidden:NO];
+        [self.menuViewController.view setHidden:YES];
+        [self.colorPickerView setHidden:YES];
+    }
 }
 
 - (IBAction)colorButtonTouched:(UIButton *)sender {
     if ([self.colorPickerView isHidden]) {
         [self.scrollView setHidden:YES];
+        [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:NO];
     } else {
         [self.scrollView setHidden:NO];
+        [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:YES];
     }
 }
@@ -119,6 +131,14 @@
     self.selectedColor = color;
 }
 
+-(void)loadTableViewController {
+    _menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tableViewController"];
+    [_menuViewController.view setFrame:self.scrollView.frame];
+    [self addChildViewController:_menuViewController];
+    [self.view addSubview:_menuViewController.view];
+    [_menuViewController didMoveToParentViewController:self];
+    
+}
 #pragma mark - Delegate Methods
 - (void) pixelTouched : (PixelView *)requestor {
     NSLog(@"%li",requestor.index);

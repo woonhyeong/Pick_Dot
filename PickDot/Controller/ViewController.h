@@ -10,6 +10,7 @@
 #import "ScrollView.h"
 #import "ContentView.h"
 #import "PixelView.h"
+#import "TableViewController.h"
 
 typedef enum _drawingState{
     Left, Right, Up, Down
@@ -22,6 +23,7 @@ typedef enum _drawingState{
 @property (weak, nonatomic) IBOutlet UIButton *buttonEraser;
 @property (weak, nonatomic) IBOutlet UIButton *buttonMenu;
 @property (weak, nonatomic) IBOutlet UIButton *buttonColor;
+@property (weak, nonatomic) TableViewController* menuViewController;
 
 - (IBAction)pixelTouch:(UIButton *)sender;
 - (IBAction)menuButtonTouched:(UIButton *)sender;
