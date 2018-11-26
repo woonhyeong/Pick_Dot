@@ -10,9 +10,9 @@
 
 @protocol TableDelegate <NSObject>
 @required
-- (void)savePixelTable;
-- (void)openPixelTable;
-- (void)newOpenPixelTable:(NSInteger)matrixSize;
+- (void)selectSaveCell;
+- (void)selectNewCell;
+- (void)selectOpenCell;
 @end
 
 @interface TableViewController : UITableViewController

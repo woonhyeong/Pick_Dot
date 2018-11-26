@@ -54,6 +54,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
                                         <state key="normal" title="CREATE TABLE"/>
+                                        <connections>
+                                            <action selector="createButtonTouched:" destination="Q1y-Oh-Ij7" eventType="touchUpInside" id="fhI-nv-crY"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -198,6 +201,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaB-uh-hOq" sceneMemberID="firstResponder"/>
+                <exit id="Q1y-Oh-Ij7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-68.115942028985515" y="54.910714285714285"/>
         </scene>

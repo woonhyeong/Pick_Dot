@@ -142,16 +142,16 @@
 }
 
 #pragma mark - Delegate Methods
-- (void)savePixelTable {
-    
+- (void)selectSaveCell {
+    NSLog(@"SAVE");
 }
 
-- (void)openPixelTable {
-    
+- (void)selectNewCell {
+    NSLog(@"NEW");
 }
 
-- (void)newOpenPixelTable:(NSInteger)matrixSize {
-    
+- (void)selectOpenCell {
+    NSLog(@"OPEN");
 }
 
 @end
