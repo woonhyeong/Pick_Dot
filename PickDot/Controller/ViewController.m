@@ -20,23 +20,25 @@
 @end
 
 @implementation ViewController
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeUI];
     
-    [self.contentView setFrame:CGRectMake(0, 0, 400, 400)];
+    self.scrollView.delegate = self;
+    self.scrollView.minimumZoomScale = 1.0;
+    self.scrollView.maximumZoomScale = 10.0;
+    self.scrollView.contentSize = self.contentView.frame.size;
     [self.scrollView addSubview:self.contentView];
-    self.scrollView.contentSize = self.contentView.bounds.size;
     [self.scrollView.layer setBorderWidth:0.5f];
     [self.scrollView.layer setBorderColor:[UIColor blackColor].CGColor];
-    self.scrollView.minimumZoomScale = 0.5f;
-    self.scrollView.maximumZoomScale = 2.0f;
     
     [self.view addSubview:self.colorPickerView];
     [self loadTableViewController];
 }
 
+- (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
+    return self.contentView;
+}
 #pragma mark - Getter & Setter
 -(ContentView *)contentView {
     if (_contentView == nil) {
@@ -147,12 +149,27 @@
 }
 
 - (void)selectNewCell {
-    NSLog(@"NEW");
+    _areaSelectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"areaSelectVC"];
+    _areaSelectVC.delegate = self;
+    _areaSelectVC.providesPresentationContextTransitionStyle = YES;
+    _areaSelectVC.definesPresentationContext = YES;
+    [_areaSelectVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    
+    [self presentViewController:_areaSelectVC animated:NO completion:^{
+        self->_areaSelectVC.view.alpha = 0;
+
+        [UIView animateWithDuration:0.5 animations:^{
+            self->_areaSelectVC.view.alpha = 1;
+        }];
+    }];
 }
 
 - (void)selectOpenCell {
     NSLog(@"OPEN");
 }
 
+- (void)dismiss:(NSInteger)matrixSize {
+    [self.areaSelectVC dismissViewControllerAnimated:NO completion:nil];
+}
 @end
 

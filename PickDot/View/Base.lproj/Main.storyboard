@@ -35,7 +35,126 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0ch-p3-k4R" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="886" y="55"/>
+            <point key="canvasLocation" x="1465" y="55"/>
+        </scene>
+        <!--Area Select View Controller-->
+        <scene sceneID="KHi-We-0Lh">
+            <objects>
+                <viewController storyboardIdentifier="areaSelectVC" id="Z9Y-Xh-9qi" customClass="AreaSelectViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="lXK-ae-52d">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HYg-Jz-6yX">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <view alpha="0.69999999999999996" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-Dk-thV">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="tintColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <viewLayoutGuide key="safeArea" id="L4i-Ib-GwR"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hsM-M0-l1w">
+                                        <rect key="frame" x="85" y="349" width="239.99999999999994" height="200.00000000000006"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-ZW-oof">
+                                                <rect key="frame" x="20" y="152" width="200" height="40"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
+                                                <state key="normal" title="CREATE TABLE">
+                                                    <color key="titleColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="createButtonTouched:" destination="Q1y-Oh-Ij7" eventType="touchUpInside" id="fhI-nv-crY"/>
+                                                    <action selector="createButtonTouched:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="nwx-Ig-BNf"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="New Table" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jw3-AP-nFJ">
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="54"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="28"/>
+                                                <color key="textColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-ZO-vIN">
+                                                <rect key="frame" x="8" y="85" width="224" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="16 x 16 pixels"/>
+                                                <connections>
+                                                    <action selector="sizeSelectButtonTouched:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="scT-KA-TTn"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="erf-uw-MsT">
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hk5-sr-MXA">
+                                                <rect key="frame" x="54" y="321" width="240" height="120"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <subviews>
+                                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nq-DD-wHx">
+                                                        <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="16 x 16 pixels"/>
+                                                        <connections>
+                                                            <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="ITd-Qz-ih7"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksL-bt-Ubt">
+                                                        <rect key="frame" x="0.0" y="30" width="240" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="20 x 20 pixels"/>
+                                                        <connections>
+                                                            <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="6e3-Qn-uRP"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpI-ll-G82">
+                                                        <rect key="frame" x="0.0" y="60" width="240" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="24 x 24 pixels"/>
+                                                        <connections>
+                                                            <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="DmM-w0-bYW"/>
+                                                        </connections>
+                                                    </button>
+                                                    <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ox3-4E-2im">
+                                                        <rect key="frame" x="0.0" y="90" width="240" height="30"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <state key="normal" title="28 x 28 pixels"/>
+                                                        <connections>
+                                                            <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="wof-hm-LsQ"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </view>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="0Bv-F2-I4q"/>
+                    </view>
+                    <connections>
+                        <outlet property="blackView" destination="fD8-Dk-thV" id="Pes-Mi-lon"/>
+                        <outlet property="createView" destination="hsM-M0-l1w" id="u0b-ir-Psg"/>
+                        <outlet property="sizeSelectBackGroundView" destination="erf-uw-MsT" id="wfI-4W-WsP"/>
+                        <outlet property="sizeSelectButton" destination="ijK-ZO-vIN" id="zip-59-6Je"/>
+                        <outlet property="sizeSelectView" destination="Hk5-sr-MXA" id="afC-mk-cYr"/>
+                        <outlet property="titleLabel" destination="Jw3-AP-nFJ" id="eAV-78-9IV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sar-WM-fTz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="686.95652173913049" y="54.910714285714285"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="Tq8-YK-ynn">
@@ -45,23 +164,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view hidden="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fD8-Dk-thV" customClass="CreateTableView">
-                                <rect key="frame" x="87" y="160" width="240" height="200"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jkL-ZW-oof">
-                                        <rect key="frame" x="20" y="150" width="200" height="40"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="18"/>
-                                        <state key="normal" title="CREATE TABLE"/>
-                                        <connections>
-                                            <action selector="createButtonTouched:" destination="Q1y-Oh-Ij7" eventType="touchUpInside" id="fhI-nv-crY"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <color key="tintColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                            </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="999-ry-PUZ">
                                 <rect key="frame" x="16" y="52" width="380" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -189,7 +291,7 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <viewLayoutGuide key="safeArea" id="gbs-b5-5p1"/>
                     </view>
                     <connections>
