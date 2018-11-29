@@ -37,6 +37,7 @@
 
 - (IBAction)selectPixelSize:(UIButton *)sender {
     [self.sizeSelectButton setTitle:sender.titleLabel.text forState:UIControlStateNormal];
+    self.matrixSize = sender.tag;
     [self.sizeSelectBackGroundView setHidden:YES];
 }
 @end

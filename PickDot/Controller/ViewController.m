@@ -170,6 +170,7 @@
 
 - (void)dismiss:(NSInteger)matrixSize {
     [self.areaSelectVC dismissViewControllerAnimated:NO completion:nil];
+    NSLog(@"%ld",matrixSize);
 }
 @end
 
