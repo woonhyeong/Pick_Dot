@@ -8,7 +8,7 @@
 
 #import "ContentView.h"
 
-#define DEFAULT_MATRIX_SIZE 20
+#define DEFAULT_MATRIX_SIZE 16
 @interface ContentView()
 
 @end
@@ -16,10 +16,11 @@
 @implementation ContentView
 
 #pragma mark - Initialization
--(id)init {
+-(id)init{
     self = [super init];
     if(self){
-        [self setFrame:CGRectMake(0, 0, DEFAULT_MATRIX_SIZE*DEFAULT_MATRIX_SIZE, DEFAULT_MATRIX_SIZE*DEFAULT_MATRIX_SIZE)];
+        self.matrixSize = DEFAULT_MATRIX_SIZE;
+        [self setFrame:CGRectMake(0, 0, 20*DEFAULT_MATRIX_SIZE, 20*DEFAULT_MATRIX_SIZE)];
         self.prevSelectedPixelIndex = -1;
         [self makePixel];
     }
@@ -34,11 +35,13 @@
     return _pixelArray;
 }
 
--(NSInteger)matrixSize {
-    if (_matrixSize < 20) {
-        _matrixSize = DEFAULT_MATRIX_SIZE;
-    }
-    return _matrixSize;
+- (void)setMatrixSize:(NSInteger)matrixSize {
+    _matrixSize = matrixSize;
+    [self removeAllSubView];
+    [self setFrame:CGRectMake(0, 0, 20*_matrixSize, 20*_matrixSize)];
+    self.prevSelectedPixelIndex = -1;
+    [self.pixelArray removeAllObjects];
+    [self makePixel];
 }
 
 -(UIColor*)selectedColor {
@@ -53,7 +56,7 @@
     for (int i = 0; i < self.matrixSize; i++) {
         for(int k = 0; k <self.matrixSize; k++) {
             PixelView* pixel = [[PixelView alloc]initWithIndex:i*self.matrixSize+k Color:self.selectedColor];
-            [pixel setFrame:CGRectMake(k*self.matrixSize,i*self.matrixSize, 20, 20)];
+            [pixel setFrame:CGRectMake(k*20,i*20, 20, 20)];
             [pixel drawSelfView];
             [self.pixelArray addObject:pixel];
             [self addSubview:pixel];
@@ -114,6 +117,12 @@
             default:
                 break;
         }
+    }
+}
+
+- (void)removeAllSubView {
+    for (PixelView* pixel in self.subviews) {
+        [pixel removeFromSuperview];
     }
 }
 @end

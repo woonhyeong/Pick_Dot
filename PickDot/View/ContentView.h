@@ -16,8 +16,8 @@
 @property (nonatomic) NSInteger matrixSize;
 @property (nonatomic) NSInteger prevSelectedPixelIndex;
 
--(void)selectPixelAtIndex:(NSInteger)index;
--(void)drawColorToPixel;
--(void)moveSelectedPixelAtIndex:(NSInteger)direction;
-
+- (void)selectPixelAtIndex:(NSInteger)index;
+- (void)drawColorToPixel;
+- (void)moveSelectedPixelAtIndex:(NSInteger)direction;
+- (void)setMatrixSize:(NSInteger)matrixSize;
 @end

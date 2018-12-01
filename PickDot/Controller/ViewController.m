@@ -25,9 +25,10 @@
     [self makeUI];
     
     self.scrollView.delegate = self;
-    self.scrollView.minimumZoomScale = 1.0;
-    self.scrollView.maximumZoomScale = 10.0;
+    self.scrollView.minimumZoomScale = 0.1;
+    self.scrollView.maximumZoomScale = 5.0;
     self.scrollView.contentSize = self.contentView.frame.size;
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
     [self.scrollView addSubview:self.contentView];
     [self.scrollView.layer setBorderWidth:0.5f];
     [self.scrollView.layer setBorderColor:[UIColor blackColor].CGColor];
@@ -39,6 +40,7 @@
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.contentView;
 }
+
 #pragma mark - Getter & Setter
 -(ContentView *)contentView {
     if (_contentView == nil) {
@@ -90,7 +92,6 @@
 -(IBAction)pixelTouch:(UIButton *)sender
 {
     if ([[sender superview] isKindOfClass:[PixelView class]]) {
-        NSLog(@"Button Index: %ld", ((PixelView*)[sender superview]).index);
         [self.contentView selectPixelAtIndex:((PixelView*)[sender superview]).index];
     }
 }
@@ -134,13 +135,14 @@
 }
 
 -(void)loadTableViewController {
-    _menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tableViewController"];
-    _menuViewController.delegate = self;
-    [_menuViewController.view setFrame:self.scrollView.frame];
-    [self addChildViewController:_menuViewController];
-    [self.view addSubview:_menuViewController.view];
-    [_menuViewController didMoveToParentViewController:self];
-    
+    if (_menuViewController == nil) {
+        _menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tableViewController"];
+        _menuViewController.delegate = self;
+        [_menuViewController.view setFrame:self.scrollView.frame];
+        [self addChildViewController:_menuViewController];
+        [self.view addSubview:_menuViewController.view];
+        [_menuViewController didMoveToParentViewController:self];
+    }
 }
 
 #pragma mark - Delegate Methods
@@ -173,6 +175,18 @@
      matrixSize
      0 : 16     1 : 20      2 : 24      3 : 28
      */
+    
+    /*
+     Make new contentView
+     */
+    self.scrollView.zoomScale = 1;
+    [self.contentView setMatrixSize:(16+4*matrixSize)];
+    self.scrollView.contentSize = self.contentView.frame.size;
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
+    
+    [self.menuViewController.view setHidden:YES];
+    [self.scrollView setHidden:NO];
+    
     [self.areaSelectVC dismissViewControllerAnimated:NO completion:nil];
     
 }
