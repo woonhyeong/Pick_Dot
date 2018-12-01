@@ -62,12 +62,15 @@
     switch (indexPath.row) {
         case 0:
             [self.delegate selectNewCell];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         case 1:
             [self.delegate selectSaveCell];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         case 2:
             [self.delegate selectOpenCell];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         default:
             break;
