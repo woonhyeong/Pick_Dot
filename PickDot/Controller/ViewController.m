@@ -147,7 +147,19 @@
 
 #pragma mark - Delegate Methods
 - (void)selectSaveCell {
-    NSLog(@"SAVE");
+    _saveSelectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"saveSelecrtVC"];
+    _saveSelectVC.delegate = self;
+    _saveSelectVC.providesPresentationContextTransitionStyle = YES;
+    _saveSelectVC.definesPresentationContext = YES;
+    [_saveSelectVC setModalPresentationStyle:UIModalPresentationOverCurrentContext];
+    
+    [self presentViewController:_saveSelectVC animated:NO completion:^{
+        self->_saveSelectVC.view.alpha = 0;
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            self->_saveSelectVC.view.alpha = 1;
+        }];
+    }];
 }
 
 - (void)selectNewCell {
@@ -190,5 +202,10 @@
     [self.areaSelectVC dismissViewControllerAnimated:NO completion:nil];
     
 }
+
+-(void)saveFile:(NSString *)fileTitle {
+    
+}
+
 @end
 

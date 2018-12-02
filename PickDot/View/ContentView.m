@@ -125,4 +125,15 @@
         [pixel removeFromSuperview];
     }
 }
+
+- (NSDictionary *)pixelArrayConvertedToDictionary {
+    NSMutableDictionary* mdic = [[NSMutableDictionary alloc]init];
+    [mdic setValue:[NSNumber numberWithInteger:self.pixelArray.count] forKey:@"Size"];
+    
+    for (PixelView* pixel in self.pixelArray) {
+        [mdic setObject:pixel.backgroundColor forKey:[NSString stringWithFormat:@"%ld",pixel.index]];
+    }
+    
+    return [mdic copy];
+}
 @end

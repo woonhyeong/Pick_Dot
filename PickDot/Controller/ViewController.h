@@ -13,12 +13,13 @@
 #import "TableViewController.h"
 #import "CreateTableView.h"
 #import "AreaSelectViewController.h"
+#import "SaveSelectViewController.h"
 
 typedef enum _drawingState{
     Left, Right, Up, Down
 } Direction;
 
-@interface ViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate, TableDelegate, areaSelectDelegate>
+@interface ViewController : UIViewController <UIScrollViewDelegate,UIGestureRecognizerDelegate, TableDelegate, areaSelectDelegate,saveSelectDelegate>
 
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UIButton *buttonPen;
@@ -28,6 +29,7 @@ typedef enum _drawingState{
 
 @property (weak, nonatomic) TableViewController* menuViewController;
 @property (weak, nonatomic) AreaSelectViewController* areaSelectVC;
+@property (weak, nonatomic) SaveSelectViewController* saveSelectVC;
 
 - (IBAction)pixelTouch:(UIButton *)sender;
 - (IBAction)menuButtonTouched:(UIButton *)sender;
