@@ -22,7 +22,6 @@
         self.matrixSize = DEFAULT_MATRIX_SIZE;
         [self setFrame:CGRectMake(0, 0, 20*DEFAULT_MATRIX_SIZE, 20*DEFAULT_MATRIX_SIZE)];
         self.prevSelectedPixelIndex = -1;
-        [self makePixel];
     }
     return self;
 }
@@ -46,7 +45,7 @@
 
 -(UIColor*)selectedColor {
     if (_selectedColor == nil) {
-        _selectedColor = [UIColor clearColor];
+        _selectedColor = [UIColor whiteColor];
     }
     return _selectedColor;
 }
@@ -131,7 +130,17 @@
     [mdic setValue:[NSNumber numberWithInteger:self.pixelArray.count] forKey:@"Size"];
     
     for (PixelView* pixel in self.pixelArray) {
-        [mdic setObject:pixel.backgroundColor forKey:[NSString stringWithFormat:@"%ld",pixel.index]];
+        CGFloat r, g, b, a, h, s, w;
+        NSString* colorToString;
+        
+        if ([pixel.backgroundColor getRed:&r green:&g blue:&b alpha:&a])
+            colorToString =  [NSString stringWithFormat:@"rgba:%f,%f,%f,%f", r,g,b,a];
+        else if ([pixel.backgroundColor getHue:&h saturation:&s brightness:&b alpha:&a])
+            colorToString = [NSString stringWithFormat:@"hsba:%f,%f,%f,%f", h,s,b,a];
+        else if ([pixel.backgroundColor getWhite:&w alpha:&a])
+            colorToString = [NSString stringWithFormat:@"wa:%f,%f", w, a];
+
+        [mdic setObject:colorToString forKey:[NSString stringWithFormat:@"%ld",pixel.index]];
     }
     
     return [mdic copy];

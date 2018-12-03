@@ -11,7 +11,8 @@
 @interface SaveSelectViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *inputField;
 @property (weak, nonatomic) IBOutlet UIButton *saveButton;
-
+@property (weak, nonatomic) IBOutlet UIView *saveView;
+@property (weak, nonatomic) IBOutlet UIView *blackView;
 @end
 
 @implementation SaveSelectViewController
@@ -22,11 +23,17 @@ bool keyboardIsShowing;
     keyboardIsShowing = NO;
     [self.saveButton setEnabled:NO];
     [self.inputField addTarget:self action:@selector(updateLabelUsingContentsOfTextField:) forControlEvents:UIControlEventEditingChanged];
+    [self.inputField setKeyboardType:UIKeyboardTypeDefault];
+    self.inputField.autocorrectionType = UITextAutocorrectionTypeNo;
     
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
-    tap.delegate = self;
-    tap.numberOfTapsRequired = 1;
-    [self.view addGestureRecognizer:tap];
+    UITapGestureRecognizer *tapBlackView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissViewAndKeyboard)];
+    tapBlackView.delegate = self;
+    tapBlackView.numberOfTapsRequired = 1;
+    [self.blackView addGestureRecognizer:tapBlackView];
+    UITapGestureRecognizer *tapSaveView = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissKeyboard)];
+    tapSaveView.delegate = self;
+    tapSaveView.numberOfTapsRequired = 1;
+    [self.saveView addGestureRecognizer:tapSaveView];
     
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(keyboardDidShow:)
@@ -49,14 +56,20 @@ bool keyboardIsShowing;
 }
 
 #pragma mark - Tap Gesture
--(void) dismissKeyboard {
+- (void)dismissViewAndKeyboard {
     if (keyboardIsShowing) {
         [self.inputField resignFirstResponder];
     } else {
         [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
+- (void)dismissKeyboard {
+    if (keyboardIsShowing) {
+        [self.inputField resignFirstResponder];
+    }
+}
 
+#pragma mark - UITextField method
 - (void)updateLabelUsingContentsOfTextField:(id)sender {
     if (self.inputField.text.length < 1) {
         [self.saveButton setEnabled:NO];
@@ -80,13 +93,12 @@ bool keyboardIsShowing;
                                }];
     
     [alert addAction:okButton];
-    [self presentViewController:alert animated:YES completion:nil];
     
-    //    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    //    if ([userDefaults objectForKey:self.inputField.text] == nil) {
-    //        return;
-    //    } else {
-    //        [self.delegate saveFile:self.inputField.text];
-    //    }
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:self.inputField.text] == nil) {
+         [self.delegate saveFile:self.inputField.text];
+    } else {
+        [self presentViewController:alert animated:YES completion:nil];
+    }
 }
 @end

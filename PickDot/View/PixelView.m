@@ -29,6 +29,7 @@
     // Make Touched Button
     UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [button addTarget:self.vcDelegate action:@selector(pixelTouch:) forControlEvents:UIControlEventTouchUpInside];
+    [self setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:button];
     self.layer.borderWidth = 0.5f;
     self.layer.borderColor = [[UIColor lightGrayColor]CGColor];

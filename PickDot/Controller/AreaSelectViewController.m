@@ -22,11 +22,18 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.matrixSize = 0;
+    
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissView)];
+    tap.delegate = self;
+    tap.numberOfTapsRequired = 1;
+    [self.blackView addGestureRecognizer:tap];
 }
 
-- (void)makeButton {
-   
+#pragma mark - Tap Gesture
+- (void)dismissView {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
+#pragma mark - IBAction methods
 - (IBAction)createButtonTouched:(UIButton *)sender {
     [self.delegate dismiss:self.matrixSize];
 }

@@ -102,7 +102,7 @@
 }
 
 - (IBAction)eraserButtonTouched:(UIButton *)sender {
-    [self.contentView setSelectedColor:[UIColor clearColor]];
+    [self.contentView setSelectedColor:[UIColor whiteColor]];
     [self.contentView drawColorToPixel];
 }
 
@@ -124,8 +124,8 @@
     [self.selectedColorLabel.layer setBorderWidth:1.0f];
     [self.selectedColorLabel.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.selectedColorLabel.layer setCornerRadius:0.5 * self.selectedColorLabel.bounds.size.width];
-    [self.selectedColorLabel setBackgroundColor:[UIColor clearColor]];
-    self.selectedColor = [UIColor clearColor];
+    [self.selectedColorLabel setBackgroundColor:[UIColor whiteColor]];
+    self.selectedColor = [UIColor whiteColor];
 }
 
 -(void)changeColorAction:(UIColor *)color{
@@ -171,7 +171,7 @@
     
     [self presentViewController:_areaSelectVC animated:NO completion:^{
         self->_areaSelectVC.view.alpha = 0;
-
+        
         [UIView animateWithDuration:0.5 animations:^{
             self->_areaSelectVC.view.alpha = 1;
         }];
@@ -204,7 +204,18 @@
 }
 
 -(void)saveFile:(NSString *)fileTitle {
+    [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];
+    NSDictionary* dic = [[NSDictionary alloc]initWithDictionary:self.contentView.pixelArrayConvertedToDictionary];
     
+    NSError* err;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic                                                           options:NSJSONWritingPrettyPrinted error:&err];
+    
+    if (! jsonData) {
+        NSLog(@"Got an error: %@", err);
+    } else {
+        NSString *jsonString = [[NSStringq alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        NSLog(@"%@",jsonString);
+    }
 }
 
 @end

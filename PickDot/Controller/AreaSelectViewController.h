@@ -13,7 +13,8 @@
 - (void)dismiss:(NSInteger)matrixSize;
 @end
 
-@interface AreaSelectViewController : UIViewController
+@interface AreaSelectViewController : UIViewController <UIGestureRecognizerDelegate>
+
 @property (nonatomic, assign) id<areaSelectDelegate> delegate;
 @property (nonatomic) NSInteger matrixSize;
 

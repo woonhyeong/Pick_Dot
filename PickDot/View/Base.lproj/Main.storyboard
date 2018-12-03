@@ -45,11 +45,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="G1o-Vl-x66">
-                                <rect key="frame" x="87" y="384" width="240" height="128"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                             <view alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zdb-nd-h1G">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -103,8 +98,10 @@
                         <viewLayoutGuide key="safeArea" id="vLH-sL-FF5"/>
                     </view>
                     <connections>
+                        <outlet property="blackView" destination="zdb-nd-h1G" id="0iz-Qn-sf8"/>
                         <outlet property="inputField" destination="HyD-Ir-w4j" id="DgN-xz-hbF"/>
                         <outlet property="saveButton" destination="bAr-Xf-Dwn" id="bt6-uW-9Xc"/>
+                        <outlet property="saveView" destination="CCv-dO-Gcd" id="bvm-Z4-Xjc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3Z-ET-1mf" userLabel="First Responder" sceneMemberID="firstResponder"/>
