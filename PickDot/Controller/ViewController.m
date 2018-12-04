@@ -83,15 +83,24 @@
         [self.scrollView setHidden:YES];
         [self.menuViewController.view setHidden:NO];
         [self.colorPickerView setHidden:YES];
+        
+        [self.buttonPen setEnabled:NO];
+        [self.buttonEraser setEnabled:NO];
     } else {
         [self.scrollView setHidden:NO];
         [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:YES];
+        
+        [self.buttonPen setEnabled:YES];
+        [self.buttonEraser setEnabled:YES];
     }
     
     if([[self childViewControllers]containsObject:self.openViewController]){
         [self.openViewController removeFromParentViewController];
         [self.view.subviews.lastObject removeFromSuperview];
+        
+        [self.buttonPen setEnabled:YES];
+        [self.buttonEraser setEnabled:YES];
     }
 }
 
@@ -100,15 +109,24 @@
         [self.scrollView setHidden:YES];
         [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:NO];
+        
+        [self.buttonPen setEnabled:NO];
+        [self.buttonEraser setEnabled:NO];
     } else {
         [self.scrollView setHidden:NO];
         [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:YES];
+        
+        [self.buttonPen setEnabled:YES];
+        [self.buttonEraser setEnabled:YES];
     }
     
     if([[self childViewControllers]containsObject:self.openViewController]){
         [self.openViewController removeFromParentViewController];
         [self.view.subviews.lastObject removeFromSuperview];
+        
+        [self.buttonPen setEnabled:YES];
+        [self.buttonEraser setEnabled:YES];
     }
 }
 
@@ -176,6 +194,9 @@
         [self addChildViewController:_openViewController];
         [self.view addSubview:_openViewController.view];
         [_openViewController didMoveToParentViewController:self];
+        
+        [self.buttonPen setEnabled:NO];
+        [self.buttonEraser setEnabled:NO];
     }
 }
 #pragma mark - Delegate Methods
@@ -249,8 +270,16 @@
     } else {
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         [userDefaults setObject:jsonString forKey:fileTitle];
+        
         NSInteger i = [userDefaults integerForKey:@"count"];
         [userDefaults setInteger:(i+1) forKey:@"count"];
+        
+        NSString *requestString = [userDefaults objectForKey:@"files"];
+        NSData *requestData = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableArray *requestArray = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:nil];
+        [requestArray addObject:fileTitle];
+        requestData = [NSJSONSerialization dataWithJSONObject:requestArray options:NSJSONWritingPrettyPrinted error:nil];
+        [userDefaults setObject:requestArray forKey:@"files"];
     }
     
     [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];

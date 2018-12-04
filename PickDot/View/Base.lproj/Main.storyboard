@@ -428,6 +428,7 @@
                     </view>
                     <connections>
                         <outlet property="buttonColor" destination="AMn-Gm-Ihk" id="OFT-oT-3S0"/>
+                        <outlet property="buttonEraser" destination="Lt3-eh-adQ" id="RFi-Xd-EO7"/>
                         <outlet property="buttonMenu" destination="YSo-Gc-CiL" id="Cim-Dm-Yp5"/>
                         <outlet property="buttonPen" destination="hlt-9Z-suC" id="Qb2-qr-K3W"/>
                         <outlet property="scrollView" destination="999-ry-PUZ" id="ksK-gB-bbS"/>

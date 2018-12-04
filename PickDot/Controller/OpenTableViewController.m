@@ -28,7 +28,7 @@
 #pragma mark - Private Methods
 - (void)makeList {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* array = [[userDefaults dictionaryRepresentation]allKeys];
+    NSArray* array = [userDefaults objectForKey:@"files"];
     self.list = [[NSArray alloc]initWithArray:array];
 }
 
