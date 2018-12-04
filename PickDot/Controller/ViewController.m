@@ -204,7 +204,7 @@
 }
 
 -(void)saveFile:(NSString *)fileTitle {
-    [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary* dic = [[NSDictionary alloc]initWithDictionary:self.contentView.pixelArrayConvertedToDictionary];
     
     NSError* err;
@@ -213,9 +213,11 @@
     if (! jsonData) {
         NSLog(@"Got an error: %@", err);
     } else {
-        NSString *jsonString = [[NSStringq alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-        NSLog(@"%@",jsonString);
+        NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [userDefaults setObject:jsonString forKey:fileTitle];
     }
+    
+    [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 @end
