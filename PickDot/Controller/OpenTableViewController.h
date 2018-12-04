@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+@protocol LoadPixelDelegate <NSObject>
+@required
+- (void)loadPixelFromJsonData:(NSString*)jsonKey;
+@end
 
 @interface OpenTableViewController : UITableViewController
 
+@property (nonatomic, assign) id<LoadPixelDelegate> delegate;
 @end
-
-NS_ASSUME_NONNULL_END

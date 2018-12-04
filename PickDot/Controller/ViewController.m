@@ -95,13 +95,7 @@
         [self.buttonEraser setEnabled:YES];
     }
     
-    if([[self childViewControllers]containsObject:self.openViewController]){
-        [self.openViewController removeFromParentViewController];
-        [self.view.subviews.lastObject removeFromSuperview];
-        
-        [self.buttonPen setEnabled:YES];
-        [self.buttonEraser setEnabled:YES];
-    }
+    [self closeOpenTableViewController];
 }
 
 - (IBAction)colorButtonTouched:(UIButton *)sender {
@@ -121,13 +115,7 @@
         [self.buttonEraser setEnabled:YES];
     }
     
-    if([[self childViewControllers]containsObject:self.openViewController]){
-        [self.openViewController removeFromParentViewController];
-        [self.view.subviews.lastObject removeFromSuperview];
-        
-        [self.buttonPen setEnabled:YES];
-        [self.buttonEraser setEnabled:YES];
-    }
+    [self closeOpenTableViewController];
 }
 
 -(IBAction)pixelTouch:(UIButton *)sender
@@ -160,6 +148,7 @@
         [self.contentView moveSelectedPixelAtIndex:Down];
     }
 }
+
 #pragma mark - Priavate Methods
 - (void)makeUI {
     [self.selectedColorLabel.layer setBorderWidth:1.0f];
@@ -197,6 +186,16 @@
         
         [self.buttonPen setEnabled:NO];
         [self.buttonEraser setEnabled:NO];
+    }
+}
+
+- (void)closeOpenTableViewController {
+    if([[self childViewControllers]containsObject:self.openViewController]){
+        [self.openViewController removeFromParentViewController];
+        [self.view.subviews.lastObject removeFromSuperview];
+        
+        [self.buttonPen setEnabled:YES];
+        [self.buttonEraser setEnabled:YES];
     }
 }
 #pragma mark - Delegate Methods
@@ -258,7 +257,7 @@
     
 }
 
--(void)saveFile:(NSString *)fileTitle {
+- (void)saveFile:(NSString *)fileTitle {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSDictionary* dic = [[NSDictionary alloc]initWithDictionary:self.contentView.pixelArrayConvertedToDictionary];
     
@@ -285,5 +284,9 @@
     [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];
 }
 
+- (void)loadPixelFromJsonData:(NSString*)jsonKey{
+    
+    [self closeOpenTableViewController];
+}
 @end
 
