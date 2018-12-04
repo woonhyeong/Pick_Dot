@@ -20,5 +20,6 @@
 - (void)drawColorToPixel;
 - (void)moveSelectedPixelAtIndex:(NSInteger)direction;
 - (void)setMatrixSize:(NSInteger)matrixSize;
+- (void)LoadPrevPixelView:(NSDictionary*)dic;
 - (NSDictionary *)pixelArrayConvertedToDictionary;
 @end

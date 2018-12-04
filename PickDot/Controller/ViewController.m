@@ -25,9 +25,11 @@
     [self makeUI];
     
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
     if ([userDefaults objectForKey:@"count"] == nil) {
         [userDefaults setInteger:0 forKey:@"count"];
     }
+    
     if ([userDefaults objectForKey:@"files"] == nil) {
         NSMutableArray *dic = [[NSMutableArray alloc]init];
         NSData *requestData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
@@ -36,7 +38,7 @@
                                                       encoding:NSUTF8StringEncoding];
         [userDefaults setObject:requestJson forKey:@"files"];
     }
-
+    
     self.scrollView.delegate = self;
     self.scrollView.minimumZoomScale = 0.1;
     self.scrollView.maximumZoomScale = 5.0;
@@ -178,7 +180,7 @@
 - (void)loadOpenTableViewController {
     if (_openViewController == nil) {
         _openViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"openVC"];
-        //_openViewController.delegate = self;
+        _openViewController.delegate = self;
         [_openViewController.view setFrame:self.scrollView.frame];
         [self addChildViewController:_openViewController];
         [self.view addSubview:_openViewController.view];
@@ -233,7 +235,6 @@
 
 - (void)selectLoadCell {
     [self loadOpenTableViewController];
-    
 }
 
 - (void)dismiss:(NSInteger)matrixSize {
@@ -254,7 +255,8 @@
     [self.scrollView setHidden:NO];
     
     [self.areaSelectVC dismissViewControllerAnimated:NO completion:nil];
-    
+    [self.buttonPen setEnabled:YES];
+    [self.buttonEraser setEnabled:YES];
 }
 
 - (void)saveFile:(NSString *)fileTitle {
@@ -278,15 +280,29 @@
         NSMutableArray *requestArray = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:nil];
         [requestArray addObject:fileTitle];
         requestData = [NSJSONSerialization dataWithJSONObject:requestArray options:NSJSONWritingPrettyPrinted error:nil];
-        [userDefaults setObject:requestArray forKey:@"files"];
+        jsonString = [[NSString alloc] initWithData:requestData encoding:NSUTF8StringEncoding];
+        [userDefaults setObject:jsonString forKey:@"files"];
     }
     
     [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (void)loadPixelFromJsonData:(NSString*)jsonKey{
-    
     [self closeOpenTableViewController];
+    
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *requestString = [userDefaults objectForKey:jsonKey];
+    NSData *requestData = [requestString dataUsingEncoding:NSUTF8StringEncoding];
+    NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:nil];
+    
+    self.scrollView.zoomScale = 1;
+    [self.contentView LoadPrevPixelView:jsonDic];
+    self.scrollView.contentSize = self.contentView.frame.size;
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
+    
+    [self.menuViewController.view setHidden:YES];
+    [self.scrollView setHidden:NO];
 }
 @end
 

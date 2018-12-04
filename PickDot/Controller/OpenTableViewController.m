@@ -9,7 +9,8 @@
 #import "OpenTableViewController.h"
 
 @interface OpenTableViewController ()
-@property (nonatomic, strong) NSArray *list;
+@property (nonatomic, strong) NSMutableArray *list;
+@property (weak, nonatomic) IBOutlet UIButton *editButton;
 @end
 
 @implementation OpenTableViewController
@@ -28,9 +29,22 @@
 #pragma mark - Private Methods
 - (void)makeList {
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    NSArray* array = [userDefaults objectForKey:@"files"];
-    self.list = [[NSArray alloc]initWithArray:array];
+    NSString* jsonString = [userDefaults objectForKey:@"files"];
+    NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+    self.list = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
 }
+
+#pragma mark - IBAction methods
+- (IBAction)editButtonTouched:(UIButton *)sender {
+    if ([self.tableView isEditing]) {
+        [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [self.tableView setEditing:NO animated:YES];
+    } else {
+        [self.editButton setTitle:@"Cancle" forState:UIControlStateNormal];
+        [self.tableView setEditing:YES animated:YES];
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -39,8 +53,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-    return [userDefaults integerForKey:@"count"];
+    return self.list.count;
 }
 
 
@@ -57,5 +70,34 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [self.delegate loadPixelFromJsonData:self.list[indexPath.row]];
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+        
+        NSString* jsonString = [userDefaults objectForKey:@"files"];
+        NSData* jsonData = [jsonString dataUsingEncoding:NSUTF8StringEncoding];
+        NSMutableArray* array = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableContainers error:nil];
+    
+        [array removeObjectAtIndex:[array indexOfObject:self.list[indexPath.row]]];
+        jsonData = [NSJSONSerialization dataWithJSONObject:array options:NSJSONWritingPrettyPrinted error:nil];
+        jsonString = [[NSString alloc]initWithData:jsonData encoding:NSUTF8StringEncoding];
+        [userDefaults setObject:jsonString forKey:@"files"];
+        [userDefaults removeObjectForKey:self.list[indexPath.row]];
+        
+        NSInteger i = [userDefaults integerForKey:@"count"];
+        [userDefaults setInteger:(i-1) forKey:@"count"];
+        
+        [self.list removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationFade];
+    
+        [self.editButton setTitle:@"Edit" forState:UIControlStateNormal];
+        [self.tableView setEditing:NO animated:YES];
+    }
+}
+
+- (UITableViewCellEditingStyle)tableView:(UITableView *)tableView editingStyleForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return UITableViewCellEditingStyleDelete;
 }
 @end

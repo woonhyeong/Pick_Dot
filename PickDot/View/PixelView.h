@@ -24,6 +24,6 @@
 
 - (id)initWithIndex:(NSInteger)index Color:(UIColor*)color;
 - (void)drawSelfView;
-
+- (void)drawSelfView:(NSArray*)rgbArray;
 @end
 

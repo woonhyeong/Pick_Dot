@@ -7,6 +7,7 @@
 //
 
 #import "ContentView.h"
+#include "math.h"
 
 #define DEFAULT_MATRIX_SIZE 16
 @interface ContentView()
@@ -42,6 +43,26 @@
     [self.pixelArray removeAllObjects];
     [self makePixel];
 }
+
+- (void)LoadPrevPixelView:(NSDictionary*)dic {
+    NSInteger size = [[dic objectForKey:@"Size"]integerValue];
+    _matrixSize = sqrt(size);
+    [self removeAllSubView];
+    [self setFrame:CGRectMake(0, 0, 20*_matrixSize, 20*_matrixSize)];
+    self.prevSelectedPixelIndex = -1;
+    [self.pixelArray removeAllObjects];
+    
+    for (int i = 0; i < self.matrixSize; i++) {
+        for(int k = 0; k <self.matrixSize; k++) {
+            PixelView* pixel = [[PixelView alloc]initWithIndex:i*self.matrixSize+k Color:self.selectedColor];
+            [pixel setFrame:CGRectMake(k*20,i*20, 20, 20)];
+            [pixel drawSelfView:[dic objectForKey:[NSString stringWithFormat:@"%ld",i*self.matrixSize+k]]];
+            [self.pixelArray addObject:pixel];
+            [self addSubview:pixel];
+        }
+    }
+}
+
 
 -(UIColor*)selectedColor {
     if (_selectedColor == nil) {
@@ -139,7 +160,7 @@
             colorToString = [NSString stringWithFormat:@"hsba:%f,%f,%f,%f", h,s,b,a];
         else if ([pixel.backgroundColor getWhite:&w alpha:&a])
             colorToString = [NSString stringWithFormat:@"wa:%f,%f", w, a];
-
+        
         [mdic setObject:colorToString forKey:[NSString stringWithFormat:@"%ld",pixel.index]];
     }
     

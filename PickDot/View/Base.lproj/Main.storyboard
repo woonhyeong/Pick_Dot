@@ -71,9 +71,26 @@
                                     <color key="textColor" red="0.2264251387" green="0.69291051410000004" blue="0.28943142370000002" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     <nil key="highlightedColor"/>
                                 </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QuK-c4-lnL">
+                                    <rect key="frame" x="326" y="6" width="80" height="33"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="80" id="iXS-UK-ycW"/>
+                                        <constraint firstAttribute="height" constant="33" id="uIQ-W4-dCt"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="17"/>
+                                    <state key="normal" title="Edit">
+                                        <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="editButtonTouched:" destination="rsK-0x-UNi" eventType="touchUpInside" id="Cgn-mz-o1e"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
+                                <constraint firstAttribute="trailing" secondItem="QuK-c4-lnL" secondAttribute="trailing" constant="8" id="JDG-lx-PC6"/>
+                                <constraint firstItem="QuK-c4-lnL" firstAttribute="top" secondItem="3Yw-3H-EJ8" secondAttribute="top" constant="6" id="LxD-ch-m2K"/>
+                                <constraint firstAttribute="bottom" secondItem="QuK-c4-lnL" secondAttribute="bottom" constant="5" id="QEk-7m-2xl"/>
                                 <constraint firstItem="ePx-kh-1P0" firstAttribute="centerY" secondItem="3Yw-3H-EJ8" secondAttribute="centerY" id="o6o-BG-Dcu"/>
                                 <constraint firstItem="ePx-kh-1P0" firstAttribute="centerX" secondItem="3Yw-3H-EJ8" secondAttribute="centerX" id="tyJ-w4-V2P"/>
                             </constraints>
@@ -93,10 +110,13 @@
                             <outlet property="delegate" destination="rsK-0x-UNi" id="pf4-tf-xVK"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="editButton" destination="QuK-c4-lnL" id="9p2-fI-sRh"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ofc-77-Iyy" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2277" y="55"/>
+            <point key="canvasLocation" x="2275.36231884058" y="54.910714285714285"/>
         </scene>
         <!--Save Select View Controller-->
         <scene sceneID="k2v-Nz-Psn">
