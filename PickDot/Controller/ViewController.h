@@ -14,6 +14,7 @@
 #import "CreateTableView.h"
 #import "AreaSelectViewController.h"
 #import "SaveSelectViewController.h"
+#import "OpenTableViewController.h"
 
 typedef enum _drawingState{
     Left, Right, Up, Down
@@ -28,6 +29,7 @@ typedef enum _drawingState{
 @property (weak, nonatomic) IBOutlet UIButton *buttonColor;
 
 @property (weak, nonatomic) TableViewController* menuViewController;
+@property (weak, nonatomic) OpenTableViewController* openViewController;
 @property (weak, nonatomic) AreaSelectViewController* areaSelectVC;
 @property (weak, nonatomic) SaveSelectViewController* saveSelectVC;
 

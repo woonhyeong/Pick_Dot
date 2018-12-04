@@ -24,6 +24,19 @@
     [super viewDidLoad];
     [self makeUI];
     
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    if ([userDefaults objectForKey:@"count"] == nil) {
+        [userDefaults setInteger:0 forKey:@"count"];
+    }
+    if ([userDefaults objectForKey:@"files"] == nil) {
+        NSMutableArray *dic = [[NSMutableArray alloc]init];
+        NSData *requestData = [NSJSONSerialization dataWithJSONObject:dic options:0 error:nil];
+        
+        NSString *requestJson = [[NSString alloc] initWithData:requestData
+                                                      encoding:NSUTF8StringEncoding];
+        [userDefaults setObject:requestJson forKey:@"files"];
+    }
+
     self.scrollView.delegate = self;
     self.scrollView.minimumZoomScale = 0.1;
     self.scrollView.maximumZoomScale = 5.0;
@@ -75,6 +88,11 @@
         [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:YES];
     }
+    
+    if([[self childViewControllers]containsObject:self.openViewController]){
+        [self.openViewController removeFromParentViewController];
+        [self.view.subviews.lastObject removeFromSuperview];
+    }
 }
 
 - (IBAction)colorButtonTouched:(UIButton *)sender {
@@ -86,6 +104,11 @@
         [self.scrollView setHidden:NO];
         [self.menuViewController.view setHidden:YES];
         [self.colorPickerView setHidden:YES];
+    }
+    
+    if([[self childViewControllers]containsObject:self.openViewController]){
+        [self.openViewController removeFromParentViewController];
+        [self.view.subviews.lastObject removeFromSuperview];
     }
 }
 
@@ -128,13 +151,13 @@
     self.selectedColor = [UIColor whiteColor];
 }
 
--(void)changeColorAction:(UIColor *)color{
+- (void)changeColorAction:(UIColor *)color{
     [self.selectedColorLabel.layer setBackgroundColor:self.colorPickerView.color.CGColor];
     [self.contentView setSelectedColor:self.colorPickerView.color];
     self.selectedColor = color;
 }
 
--(void)loadTableViewController {
+- (void)loadTableViewController {
     if (_menuViewController == nil) {
         _menuViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"tableViewController"];
         _menuViewController.delegate = self;
@@ -145,6 +168,16 @@
     }
 }
 
+- (void)loadOpenTableViewController {
+    if (_openViewController == nil) {
+        _openViewController = [self.storyboard instantiateViewControllerWithIdentifier:@"openVC"];
+        //_openViewController.delegate = self;
+        [_openViewController.view setFrame:self.scrollView.frame];
+        [self addChildViewController:_openViewController];
+        [self.view addSubview:_openViewController.view];
+        [_openViewController didMoveToParentViewController:self];
+    }
+}
 #pragma mark - Delegate Methods
 - (void)selectSaveCell {
     _saveSelectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"saveSelecrtVC"];
@@ -178,8 +211,9 @@
     }];
 }
 
-- (void)selectOpenCell {
-    NSLog(@"OPEN");
+- (void)selectLoadCell {
+    [self loadOpenTableViewController];
+    
 }
 
 - (void)dismiss:(NSInteger)matrixSize {
@@ -215,6 +249,8 @@
     } else {
         NSString *jsonString = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
         [userDefaults setObject:jsonString forKey:fileTitle];
+        NSInteger i = [userDefaults integerForKey:@"count"];
+        [userDefaults setInteger:(i+1) forKey:@"count"];
     }
     
     [self.saveSelectVC dismissViewControllerAnimated:YES completion:nil];

@@ -29,7 +29,7 @@
 
 -(NSArray*)menu {
     if (_menu == nil) {
-        _menu = [[NSArray alloc]initWithObjects:@"New",@"Save",@"Open", nil];
+        _menu = [[NSArray alloc]initWithObjects:@"New",@"Save",@"Load", nil];
     }
     return _menu;
 }
@@ -69,7 +69,7 @@
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         case 2:
-            [self.delegate selectOpenCell];
+            [self.delegate selectLoadCell];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         default:

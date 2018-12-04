@@ -12,7 +12,7 @@
 @required
 - (void)selectSaveCell;
 - (void)selectNewCell;
-- (void)selectOpenCell;
+- (void)selectLoadCell;
 @end
 
 @interface TableViewController : UITableViewController
