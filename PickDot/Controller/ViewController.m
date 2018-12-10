@@ -38,18 +38,34 @@
                                                       encoding:NSUTF8StringEncoding];
         [userDefaults setObject:requestJson forKey:@"files"];
     }
-    
+
     self.scrollView.delegate = self;
-    self.scrollView.minimumZoomScale = 0.1;
-    self.scrollView.maximumZoomScale = 5.0;
-    self.scrollView.contentSize = self.contentView.frame.size;
-    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
-    [self.scrollView addSubview:self.contentView];
     [self.scrollView.layer setBorderWidth:0.5f];
     [self.scrollView.layer setBorderColor:[UIColor blackColor].CGColor];
+    [self.scrollView addSubview:self.contentView];
+    self.scrollView.minimumZoomScale = 0.5;
+    self.scrollView.maximumZoomScale = 5.0;
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
+    self.scrollView.contentSize = CGSizeMake(500, 500);
     
+    
+    UIPinchGestureRecognizer *twoFingerPinch = [[UIPinchGestureRecognizer alloc]
+                                                 initWithTarget:self
+                                                 action:@selector(twoFingerPinch:)];
+    [self.view addGestureRecognizer:twoFingerPinch];
+
     [self.view addSubview:self.colorPickerView];
     [self loadTableViewController];
+}
+
+- (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer
+{
+    if(recognizer.scale < 0.5)
+        [recognizer setScale:0.5];
+    if(recognizer.scale > 5.0)
+       [recognizer setScale:5.0];
+    CGAffineTransform transform = CGAffineTransformMakeScale(recognizer.scale, recognizer.scale);
+    self.contentView.transform = transform;
 }
 
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
@@ -156,7 +172,7 @@
     [self.selectedColorLabel.layer setBorderWidth:1.0f];
     [self.selectedColorLabel.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.selectedColorLabel.layer setCornerRadius:0.5 * self.selectedColorLabel.bounds.size.width];
-    [self.selectedColorLabel setBackgroundColor:[UIColor whiteColor]];
+    [self.selectedColorLabel setBackgroundColor:[UIColor clearColor]];
     self.selectedColor = [UIColor whiteColor];
 }
 
@@ -248,8 +264,9 @@
      */
     self.scrollView.zoomScale = 1;
     [self.contentView setMatrixSize:(16+4*matrixSize)];
-    self.scrollView.contentSize = self.contentView.frame.size;
     self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
+    self.scrollView.contentSize = CGSizeMake((16+4*matrixSize)*20,(16+4*matrixSize)*20 );
+    
     
     [self.menuViewController.view setHidden:YES];
     [self.scrollView setHidden:NO];
@@ -298,9 +315,8 @@
     
     self.scrollView.zoomScale = 1;
     [self.contentView LoadPrevPixelView:jsonDic];
-    self.scrollView.contentSize = self.contentView.frame.size;
     self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
-    
+    self.scrollView.contentSize = self.contentView.frame.size;
     [self.menuViewController.view setHidden:YES];
     [self.scrollView setHidden:NO];
 }
