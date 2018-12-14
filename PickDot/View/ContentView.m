@@ -166,4 +166,19 @@
     
     return [mdic copy];
 }
+
+- (void)prevScreenShotPixel {
+    for (PixelView* pixel in self.pixelArray) {
+        pixel.layer.borderColor = [[UIColor clearColor]CGColor];
+    }
+}
+
+- (void)afterScreenShotPixel {
+    for (PixelView* pixel in self.pixelArray) {
+        if (pixel.index == self.prevSelectedPixelIndex) {
+            pixel.layer.borderColor = [[UIColor redColor]CGColor];
+        } else pixel.layer.borderColor = [[UIColor lightGrayColor]CGColor];
+    }
+}
+
 @end

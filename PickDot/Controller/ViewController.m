@@ -253,6 +253,17 @@
     [self loadOpenTableViewController];
 }
 
+- (void)selectExportCell {
+    [self.contentView prevScreenShotPixel];
+    UIGraphicsBeginImageContextWithOptions(self.contentView.bounds.size,NO, 0.0);
+    [self.contentView drawViewHierarchyInRect:self.contentView.bounds afterScreenUpdates:YES];
+    UIImage * snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData *jpegData = UIImageJPEGRepresentation (snapshotImage, 1.0);
+    snapshotImage = [UIImage imageWithData:jpegData];
+    UIImageWriteToSavedPhotosAlbum(snapshotImage, self, nil, nil );
+    [self.contentView afterScreenShotPixel];
+}
 - (void)dismiss:(NSInteger)matrixSize {
     /*
      matrixSize

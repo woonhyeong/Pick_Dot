@@ -21,5 +21,7 @@
 - (void)moveSelectedPixelAtIndex:(NSInteger)direction;
 - (void)setMatrixSize:(NSInteger)matrixSize;
 - (void)LoadPrevPixelView:(NSDictionary*)dic;
+- (void)prevScreenShotPixel;
+- (void)afterScreenShotPixel;
 - (NSDictionary *)pixelArrayConvertedToDictionary;
 @end

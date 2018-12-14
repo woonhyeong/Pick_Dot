@@ -13,6 +13,7 @@
 - (void)selectSaveCell;
 - (void)selectNewCell;
 - (void)selectLoadCell;
+- (void)selectExportCell;
 @end
 
 @interface TableViewController : UITableViewController

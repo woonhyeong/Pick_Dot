@@ -29,7 +29,7 @@
 
 -(NSArray*)menu {
     if (_menu == nil) {
-        _menu = [[NSArray alloc]initWithObjects:@"New",@"Save",@"Load", nil];
+        _menu = [[NSArray alloc]initWithObjects:@"New",@"Save",@"Load",@"Export", nil];
     }
     return _menu;
 }
@@ -57,7 +57,7 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     /*
-     0: New  1: Save  2: Open
+     0: New  1: Save  2: Open 3: Export
      */
     switch (indexPath.row) {
         case 0:
@@ -70,6 +70,10 @@
             break;
         case 2:
             [self.delegate selectLoadCell];
+            [tableView deselectRowAtIndexPath:indexPath animated:YES];
+            break;
+        case 3:
+            [self.delegate selectExportCell];
             [tableView deselectRowAtIndexPath:indexPath animated:YES];
             break;
         default:
