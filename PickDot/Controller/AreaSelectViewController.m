@@ -15,13 +15,14 @@
 @property (weak, nonatomic) IBOutlet UIButton *sizeSelectButton;
 @property (weak, nonatomic) IBOutlet UIView *sizeSelectView;
 @property (weak, nonatomic) IBOutlet UIView *sizeSelectBackGroundView;
+@property (weak, nonatomic) IBOutlet UIButton *crateButton;
 @end
 
 @implementation AreaSelectViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view.layer setCornerRadius:5];
+    [self makeUI];
     self.matrixSize = 0;
     
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(dismissView)];
@@ -30,6 +31,18 @@
     [self.blackView addGestureRecognizer:tap];
 }
 
+- (void)makeUI {
+    [self.view.layer setCornerRadius:5];
+    [self.createView.layer setBorderColor:[UIColor colorWithRed:64.0f/255.0f green:177.0f/255.0f blue:129.0f/255.0f alpha:1.0f].CGColor];
+    [self.createView.layer setBorderWidth:4.0f];
+    [self.sizeSelectView.layer setBorderWidth:4.0f];
+    [self.sizeSelectView.layer setBorderColor:[UIColor colorWithRed:64.0/255.0f green:177.0/255.0f blue:129.0/255.0f alpha:1.0f].CGColor];
+    
+    for (UIButton* b in self.sizeSelectView.subviews) {
+        [b.layer setBorderWidth:0.5f];
+        [b.layer setBorderColor:[UIColor lightGrayColor].CGColor];
+    }
+}
 #pragma mark - Tap Gesture
 - (void)dismissView {
     [self dismissViewControllerAnimated:YES completion:nil];

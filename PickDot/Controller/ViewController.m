@@ -18,6 +18,11 @@
 @property (nonatomic) NKOColorPickerView *colorPickerView;
 @property (weak, nonatomic) IBOutlet UIView *contrastView;
 @property (weak, nonatomic) IBOutlet UIView *backView;
+@property (weak, nonatomic) IBOutlet UIImageView *directionImage;
+@property (weak, nonatomic) IBOutlet UIButton *leftButton;
+@property (weak, nonatomic) IBOutlet UIButton *rightButton;
+@property (weak, nonatomic) IBOutlet UIButton *downButton;
+@property (weak, nonatomic) IBOutlet UIButton *upButton;
 
 @end
 
@@ -186,6 +191,17 @@
     [self.scrollView.layer setCornerRadius:5];
     [self.backView.layer setCornerRadius:20];
     [self.contrastView.layer setCornerRadius:20];
+    
+    CGFloat x  = self.directionImage.frame.size.width/3;
+    CGFloat y  = self.directionImage.frame.size.height/3;
+    
+    [self.upButton setFrame:CGRectMake(self.directionImage.frame.origin.x+x, self.directionImage.frame.origin.y, x, y)];
+    [self.leftButton setFrame:CGRectMake(self.directionImage.frame.origin.x
+                                         ,self.directionImage.frame.origin.y+y
+                                         , x, y)];
+    [self.rightButton setFrame:CGRectMake(self.directionImage.frame.origin.x+2*x, self.directionImage.frame.origin.y+y, x, y)];
+    [self.downButton setFrame:CGRectMake(self.directionImage.frame.origin.x+x, self.directionImage.frame.origin.y+2*y, x, y)];
+    
 }
 
 - (void)changeColorAction:(UIColor *)color{

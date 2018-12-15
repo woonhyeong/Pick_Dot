@@ -20,7 +20,7 @@ bool keyboardIsShowing;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self.view.layer setCornerRadius:5];
+    [self makeUI];
     
     keyboardIsShowing = NO;
     [self.saveButton setEnabled:NO];
@@ -46,6 +46,12 @@ bool keyboardIsShowing;
                                              selector:@selector(keyboardDidHide:)
                                                  name:UIKeyboardDidHideNotification
                                                object:nil];
+}
+
+- (void)makeUI {
+    [self.view.layer setCornerRadius:5];
+    [self.saveView.layer setBorderColor:[UIColor colorWithRed:64.0f/255.0f green:177.0f/255.0f blue:129.0f/255.0f alpha:1.0f].CGColor];
+    [self.saveView.layer setBorderWidth:4.0f];
 }
 
 #pragma mark - Notifications
