@@ -17,6 +17,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    [self.view.layer setCornerRadius:5];
     [self.view.layer setBorderWidth:1.0f];
     [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.view setHidden:YES];

@@ -16,6 +16,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *selectedColorLabel;
 @property (weak, nonatomic) UIColor* selectedColor;
 @property (nonatomic) NKOColorPickerView *colorPickerView;
+@property (weak, nonatomic) IBOutlet UIView *contrastView;
+@property (weak, nonatomic) IBOutlet UIView *backView;
 
 @end
 
@@ -45,7 +47,8 @@
     [self.scrollView addSubview:self.contentView];
     self.scrollView.minimumZoomScale = 0.5;
     self.scrollView.maximumZoomScale = 5.0;
-    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
+    self.scrollView.zoomScale = self.scrollView.bounds.size.width/self.contentView.bounds.size.width;
+    //NSLog(@"view didlod :%f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, self.scrollView.zoomScale);
     self.scrollView.contentSize = CGSizeMake(500, 500);
     
     
@@ -60,8 +63,10 @@
 
 - (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer
 {
-    if(recognizer.scale < 0.5)
-        [recognizer setScale:0.5];
+    float minScale = self.scrollView.bounds.size.width/self.contentView.bounds.size.width;
+    //NSLog(@"pinch : %f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, minScale);
+    if(recognizer.scale < minScale)
+        [recognizer setScale:minScale];
     if(recognizer.scale > 5.0)
        [recognizer setScale:5.0];
     CGAffineTransform transform = CGAffineTransformMakeScale(recognizer.scale, recognizer.scale);
@@ -88,9 +93,11 @@
         _colorPickerView = [[NKOColorPickerView alloc]initWithFrame:self.scrollView.frame color:[UIColor colorWithRed:0.329f green:0.718f blue:1.f alpha:1.f] andDidChangeColorBlock:colorDidChangeBlock];
         
         [self.colorPickerView setTintColor:[UIColor darkGrayColor]];
+        [self.colorPickerView.layer setCornerRadius:5];
         [self.colorPickerView.layer setBorderWidth:0.5f];
         [self.colorPickerView.layer setBorderColor:[UIColor blackColor].CGColor];
         [self.colorPickerView setHidden:YES];
+        [self.colorPickerView setBackgroundColor:[UIColor whiteColor]];
     }
     return _colorPickerView;
 }
@@ -174,6 +181,11 @@
     [self.selectedColorLabel.layer setCornerRadius:0.5 * self.selectedColorLabel.bounds.size.width];
     [self.selectedColorLabel setBackgroundColor:[UIColor clearColor]];
     self.selectedColor = [UIColor whiteColor];
+    
+    [self.scrollView setBackgroundColor:[UIColor whiteColor]];
+    [self.scrollView.layer setCornerRadius:5];
+    [self.backView.layer setCornerRadius:20];
+    [self.contrastView.layer setCornerRadius:20];
 }
 
 - (void)changeColorAction:(UIColor *)color{

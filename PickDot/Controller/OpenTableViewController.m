@@ -18,6 +18,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self makeList];
+    [self.view.layer setCornerRadius:5];
     [self.view.layer setBorderWidth:1.0f];
     [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
     // Uncomment the following line to preserve selection between presentations.

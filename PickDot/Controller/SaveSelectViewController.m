@@ -20,6 +20,8 @@ bool keyboardIsShowing;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [self.view.layer setCornerRadius:5];
+    
     keyboardIsShowing = NO;
     [self.saveButton setEnabled:NO];
     [self.inputField addTarget:self action:@selector(updateLabelUsingContentsOfTextField:) forControlEvents:UIControlEventEditingChanged];

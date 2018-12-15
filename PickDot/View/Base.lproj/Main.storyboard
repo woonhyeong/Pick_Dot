@@ -281,7 +281,7 @@
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </view>
                                         </subviews>
-                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="backgroundColor" red="0.16265991099378377" green="0.50382693527918776" blue="0.16394032170913028" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -314,12 +314,51 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="999-ry-PUZ">
-                                <rect key="frame" x="16" y="52" width="380" height="380"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JR7-FG-rOO">
+                                <rect key="frame" x="67" y="0.0" width="280" height="809"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-gZ-Vnw">
+                                        <rect key="frame" x="212" y="740" width="20" height="20"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" red="0.99545651670000002" green="0.89959458459999997" blue="0.43480617729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSo-Gc-CiL">
+                                        <rect key="frame" x="77" y="735" width="50" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="menuButton2.png"/>
+                                        <connections>
+                                            <action selector="menuButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="xYS-JS-T3h"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMn-Gm-Ihk">
+                                        <rect key="frame" x="135" y="735" width="50" height="31"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <state key="normal" image="menuButton2.png"/>
+                                        <connections>
+                                            <action selector="colorButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="C11-3s-uFQ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="PICK DOT" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ucQ-P5-nd3">
+                                        <rect key="frame" x="59" y="496" width="163" height="48"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="30"/>
+                                        <color key="textColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.29759296419817027" green="0.81783871451005119" blue="0.60462364858697271" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zCK-Wm-eI3">
+                                <rect key="frame" x="17" y="90" width="380" height="380"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </scrollView>
+                                <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </view>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RUw-Rf-HGN">
-                                <rect key="frame" x="8" y="533" width="40" height="40"/>
+                                <rect key="frame" x="10" y="600" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
@@ -336,7 +375,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ifd-JO-Mso">
-                                <rect key="frame" x="104" y="533" width="40" height="40"/>
+                                <rect key="frame" x="98" y="603" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
@@ -353,7 +392,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMd-Hn-D6F">
-                                <rect key="frame" x="56" y="581" width="40" height="40"/>
+                                <rect key="frame" x="54" y="640" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
@@ -369,11 +408,10 @@
                                     <action selector="arrowButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="DAT-wy-YNZ"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlt-9Z-suC">
-                                <rect key="frame" x="231" y="496" width="30" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hlt-9Z-suC">
+                                <rect key="frame" x="258" y="609" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Pen"/>
+                                <state key="normal" title="Pen" image="RedButton.png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
@@ -383,37 +421,10 @@
                                     <action selector="penButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="mln-AR-bsj"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YSo-Gc-CiL">
-                                <rect key="frame" x="148" y="586" width="39" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lt3-eh-adQ">
+                                <rect key="frame" x="323" y="571" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99545651670000002" green="0.46532930760000002" blue="0.31807929190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="menu"/>
-                                <connections>
-                                    <action selector="menuButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="xYS-JS-T3h"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AMn-Gm-Ihk">
-                                <rect key="frame" x="210" y="586" width="35" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99545651670000002" green="0.46532930760000002" blue="0.31807929190000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <state key="normal" title="color"/>
-                                <connections>
-                                    <action selector="colorButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="C11-3s-uFQ"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZhZ-gZ-Vnw">
-                                <rect key="frame" x="250" y="591" width="20" height="20"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" red="0.99545651670000002" green="0.89959458459999997" blue="0.43480617729999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lt3-eh-adQ">
-                                <rect key="frame" x="288" y="453" width="48" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Eraser"/>
+                                <state key="normal" title="Eraser" image="GreenButton.png"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                         <integer key="value" value="5"/>
@@ -424,7 +435,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QNP-pB-3A7">
-                                <rect key="frame" x="56" y="486" width="40" height="40"/>
+                                <rect key="frame" x="54" y="561" width="40" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
@@ -440,14 +451,24 @@
                                     <action selector="arrowButtonTouched:" destination="mHo-mD-gZ7" eventType="touchUpInside" id="lLM-sj-VZn"/>
                                 </connections>
                             </button>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="999-ry-PUZ">
+                                <rect key="frame" x="57" y="130" width="300" height="300"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </scrollView>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DirectionButton.png" translatesAutoresizingMaskIntoConstraints="NO" id="kFw-5C-pjS">
+                                <rect key="frame" x="3" y="559" width="143" height="128"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.38159201450000002" green="0.68493938470000004" blue="0.52111959789999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </view>
                     <connections>
+                        <outlet property="backView" destination="zCK-Wm-eI3" id="Q09-xs-LeR"/>
                         <outlet property="buttonColor" destination="AMn-Gm-Ihk" id="OFT-oT-3S0"/>
                         <outlet property="buttonEraser" destination="Lt3-eh-adQ" id="RFi-Xd-EO7"/>
                         <outlet property="buttonMenu" destination="YSo-Gc-CiL" id="Cim-Dm-Yp5"/>
                         <outlet property="buttonPen" destination="hlt-9Z-suC" id="Qb2-qr-K3W"/>
+                        <outlet property="contrastView" destination="JR7-FG-rOO" id="OfX-ZR-oWw"/>
                         <outlet property="scrollView" destination="999-ry-PUZ" id="ksK-gB-bbS"/>
                         <outlet property="selectedColorLabel" destination="ZhZ-gZ-Vnw" id="rm3-s0-X1v"/>
                     </connections>
@@ -455,7 +476,13 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qaB-uh-hOq" sceneMemberID="firstResponder"/>
                 <exit id="Q1y-Oh-Ij7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-290" y="53"/>
+            <point key="canvasLocation" x="-291.304347826087" y="52.901785714285715"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="DirectionButton.png" width="270" height="260"/>
+        <image name="GreenButton.png" width="720" height="720"/>
+        <image name="RedButton.png" width="720" height="720"/>
+        <image name="menuButton2.png" width="105" height="65"/>
+    </resources>
 </document>
