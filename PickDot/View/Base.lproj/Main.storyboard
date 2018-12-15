@@ -237,6 +237,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ijK-ZO-vIN">
                                                 <rect key="frame" x="8" y="85" width="224" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                                 <state key="normal" title="16 x 16 pixels"/>
                                                 <connections>
                                                     <action selector="sizeSelectButtonTouched:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="scT-KA-TTn"/>
@@ -259,6 +260,7 @@
                                                     <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1nq-DD-wHx">
                                                         <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                                         <state key="normal" title="16 x 16 pixels"/>
                                                         <connections>
                                                             <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="ITd-Qz-ih7"/>
@@ -267,6 +269,7 @@
                                                     <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ksL-bt-Ubt">
                                                         <rect key="frame" x="0.0" y="30" width="240" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                                         <state key="normal" title="20 x 20 pixels"/>
                                                         <connections>
                                                             <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="6e3-Qn-uRP"/>
@@ -275,6 +278,7 @@
                                                     <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wpI-ll-G82">
                                                         <rect key="frame" x="0.0" y="60" width="240" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                                         <state key="normal" title="24 x 24 pixels"/>
                                                         <connections>
                                                             <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="DmM-w0-bYW"/>
@@ -283,6 +287,7 @@
                                                     <button opaque="NO" tag="3" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ox3-4E-2im">
                                                         <rect key="frame" x="0.0" y="90" width="240" height="30"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                                         <state key="normal" title="28 x 28 pixels"/>
                                                         <connections>
                                                             <action selector="selectPixelSize:" destination="Z9Y-Xh-9qi" eventType="touchUpInside" id="wof-hm-LsQ"/>
@@ -489,7 +494,7 @@
                                 </connections>
                             </button>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="DirectionButton.png" translatesAutoresizingMaskIntoConstraints="NO" id="kFw-5C-pjS">
-                                <rect key="frame" x="3" y="559" width="143" height="128"/>
+                                <rect key="frame" x="3" y="559" width="140" height="140"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="999-ry-PUZ">
