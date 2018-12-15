@@ -52,10 +52,9 @@
     [self.scrollView addSubview:self.contentView];
     self.scrollView.minimumZoomScale = 0.5;
     self.scrollView.maximumZoomScale = 5.0;
-    self.scrollView.zoomScale = self.scrollView.bounds.size.width/self.contentView.bounds.size.width;
-    //NSLog(@"view didlod :%f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, self.scrollView.zoomScale);
-    self.scrollView.contentSize = CGSizeMake(500, 500);
-    
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.bounds.size.width;
+    NSLog(@"view didlod :%f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, self.scrollView.zoomScale);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width+1, self.scrollView.frame.size.height+50);
     
     UIPinchGestureRecognizer *twoFingerPinch = [[UIPinchGestureRecognizer alloc]
                                                  initWithTarget:self
@@ -68,12 +67,12 @@
 
 - (void)twoFingerPinch:(UIPinchGestureRecognizer *)recognizer
 {
-    float minScale = self.scrollView.bounds.size.width/self.contentView.bounds.size.width;
-    //NSLog(@"pinch : %f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, minScale);
+    float minScale = self.scrollView.frame.size.width/self.contentView.bounds.size.width;
+    NSLog(@"pinch : %f %f %f",self.scrollView.frame.size.width,self.contentView.bounds.size.width, minScale);
     if(recognizer.scale < minScale)
         [recognizer setScale:minScale];
     if(recognizer.scale > 5.0)
-       [recognizer setScale:5.0];
+        [recognizer setScale:5.0];
     CGAffineTransform transform = CGAffineTransformMakeScale(recognizer.scale, recognizer.scale);
     self.contentView.transform = transform;
 }
@@ -181,6 +180,12 @@
 
 #pragma mark - Priavate Methods
 - (void)makeUI {
+    if(self.scrollView.frame.size.width > self.scrollView.frame.size.height){
+        CGFloat originY = (self.backView.frame.size.height - self.scrollView.frame.size.width);
+        [self.backView setFrame:CGRectMake(self.backView.frame.origin.x, self.backView.frame.origin.y - originY, self.backView.frame.size.width, self.backView.frame.size.height+originY)];
+        [self.scrollView setFrame:CGRectMake(self.scrollView.frame.origin.x, self.backView.frame.origin.y+originY, self.scrollView.frame.size.width, self.scrollView.frame.size.width)];
+    }
+    
     [self.selectedColorLabel.layer setBorderWidth:1.0f];
     [self.selectedColorLabel.layer setBorderColor:[UIColor lightGrayColor].CGColor];
     [self.selectedColorLabel.layer setCornerRadius:0.5 * self.selectedColorLabel.bounds.size.width];
@@ -303,9 +308,12 @@
      */
     self.scrollView.zoomScale = 1;
     [self.contentView setMatrixSize:(16+4*matrixSize)];
-    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
-    self.scrollView.contentSize = CGSizeMake((16+4*matrixSize)*20,(16+4*matrixSize)*20 );
-    
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.bounds.size.width;
+    if((16+4*matrixSize)*20 < self.scrollView.frame.size.width){
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width+1, self.scrollView.frame.size.height+50);
+    }else{
+        self.scrollView.contentSize = CGSizeMake((16+4*matrixSize)*20,(16+4*matrixSize)*20 );
+    }
     
     [self.menuViewController.view setHidden:YES];
     [self.scrollView setHidden:NO];
@@ -352,12 +360,29 @@
     NSData *requestData = [requestString dataUsingEncoding:NSUTF8StringEncoding];
     NSDictionary *jsonDic = [NSJSONSerialization JSONObjectWithData:requestData options:NSJSONReadingMutableContainers error:nil];
     
+    NSInteger matrixSize = [[jsonDic objectForKey:@"Size"]integerValue];
     self.scrollView.zoomScale = 1;
     [self.contentView LoadPrevPixelView:jsonDic];
-    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.frame.size.width;
-    self.scrollView.contentSize = self.contentView.frame.size;
+    self.scrollView.zoomScale = self.scrollView.frame.size.width/self.contentView.bounds.size.width;
+    if(matrixSize*20 < self.scrollView.frame.size.width){
+        self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width+1, self.scrollView.frame.size.height+50);
+    }else{
+        self.scrollView.contentSize = CGSizeMake((matrixSize)*20,(matrixSize)*20 );
+    }
     [self.menuViewController.view setHidden:YES];
     [self.scrollView setHidden:NO];
 }
+
+#pragma mark - Rotation Control methods
+-(BOOL)shouldAutorotate
+{
+    return NO;
+}
+
+- (UIInterfaceOrientation)preferredInterfaceOrientationForPresentation
+{
+    return UIInterfaceOrientationPortrait;
+}
+
 @end
 
