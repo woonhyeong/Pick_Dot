@@ -11,15 +11,15 @@
 @class PixelView;
 @class ViewController;
 
-//@protocol PixelViewDelegate
-//-(void) pixelTouched : (PixelView *)requestor;
-//@end
+@protocol PixelViewDelegate
+-(IBAction)pixelTouch:(UIButton *)sender;
+@end
 
 @interface PixelView : UIView
 
 @property UIColor* color;
 @property NSInteger index;
-//@property (assign) id<PixelViewDelegate> delegate;
+@property (assign) id<PixelViewDelegate> delegate;
 @property (nonatomic, weak) ViewController * vcDelegate;
 
 - (id)initWithIndex:(NSInteger)index Color:(UIColor*)color;

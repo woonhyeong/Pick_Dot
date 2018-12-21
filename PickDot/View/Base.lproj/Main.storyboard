@@ -175,7 +175,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="CCv-dO-Gcd" firstAttribute="centerY" secondItem="373-wx-64w" secondAttribute="centerY" id="IIj-k7-Ydy"/>
                             <constraint firstItem="CCv-dO-Gcd" firstAttribute="centerX" secondItem="373-wx-64w" secondAttribute="centerX" id="Ima-hU-9X8"/>
@@ -300,7 +300,7 @@
                                         <color key="backgroundColor" red="0.16265991099378377" green="0.50382693527918776" blue="0.16394032170913028" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="hsM-M0-l1w" firstAttribute="centerX" secondItem="HYg-Jz-6yX" secondAttribute="centerX" id="FTt-Ra-Vr7"/>
                                     <constraint firstItem="erf-uw-MsT" firstAttribute="centerX" secondItem="hsM-M0-l1w" secondAttribute="centerX" id="Htl-Bq-d7l"/>

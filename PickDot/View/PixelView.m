@@ -29,6 +29,8 @@
     // Make Touched Button
     UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [button addTarget:self.vcDelegate action:@selector(pixelTouch:) forControlEvents:UIControlEventTouchUpInside];
+//    [button addTarget:self.vcDelegate action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
+
     [self setBackgroundColor:[UIColor whiteColor]];
     [self addSubview:button];
     self.layer.borderWidth = 0.5f;
@@ -39,7 +41,7 @@
     
     UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
     [button addTarget:self.vcDelegate action:@selector(pixelTouch:) forControlEvents:UIControlEventTouchUpInside];
-    
+//    [button addTarget:self.vcDelegate action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     NSArray *comps = [rgbString componentsSeparatedByString:@":"];
     NSArray *colors = [comps[1] componentsSeparatedByString:@","];
     NSUInteger count = colors.count;
@@ -64,8 +66,9 @@
     [super drawRect:rect];
 }
 
-//- (void)buttonTouched {
-//    [self.delegate pixelTouched:self];
+//- (IBAction)buttonTouched:(UIButton*)sender {
+//    self.layer.borderWidth = 2.0f;
+//    self.layer.borderColor = [[UIColor redColor]CGColor];
 //}
 
 @end
