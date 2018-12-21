@@ -235,6 +235,19 @@
         [self.buttonEraser setEnabled:YES];
     }
 }
+
+-(void)exportPixelToJPEG {
+    [self.contentView prevScreenShotPixel];
+    UIGraphicsBeginImageContextWithOptions(self.contentView.bounds.size,NO, 0.0);
+    [self.contentView drawViewHierarchyInRect:self.contentView.bounds afterScreenUpdates:YES];
+    UIImage * snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    NSData *jpegData = UIImageJPEGRepresentation (snapshotImage, 1.0);
+    snapshotImage = [UIImage imageWithData:jpegData];
+    UIImageWriteToSavedPhotosAlbum(snapshotImage, self, nil, nil );
+    [self.contentView afterScreenShotPixel];
+}
+
 #pragma mark - Delegate Methods
 - (void)selectSaveCell {
     _saveSelectVC = [self.storyboard instantiateViewControllerWithIdentifier:@"saveSelecrtVC"];
@@ -277,16 +290,29 @@
 }
 
 - (void)selectExportCell {
-    [self.contentView prevScreenShotPixel];
-    UIGraphicsBeginImageContextWithOptions(self.contentView.bounds.size,NO, 0.0);
-    [self.contentView drawViewHierarchyInRect:self.contentView.bounds afterScreenUpdates:YES];
-    UIImage * snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    NSData *jpegData = UIImageJPEGRepresentation (snapshotImage, 1.0);
-    snapshotImage = [UIImage imageWithData:jpegData];
-    UIImageWriteToSavedPhotosAlbum(snapshotImage, self, nil, nil );
-    [self.contentView afterScreenShotPixel];
+    UIAlertController * alert = [UIAlertController
+                                 alertControllerWithTitle:@"Export"
+                                 message:@"Are You Sure Want to Export Pixel to JPEG!"
+                                 preferredStyle:UIAlertControllerStyleAlert];
+
+    UIAlertAction* yesButton = [UIAlertAction
+                                actionWithTitle:@"Yes"
+                                style:UIAlertActionStyleDefault
+                                handler:^(UIAlertAction * action) {
+                                    [self exportPixelToJPEG];
+                                }];
+    
+    UIAlertAction* noButton = [UIAlertAction
+                               actionWithTitle:@"Cancel"
+                               style:UIAlertActionStyleDefault
+                               handler:^(UIAlertAction * action) {
+                               }];
+    
+    [alert addAction:yesButton];
+    [alert addAction:noButton];
+    [self presentViewController:alert animated:YES completion:nil];
 }
+
 - (void)dismiss:(NSInteger)matrixSize {
     /*
      matrixSize
