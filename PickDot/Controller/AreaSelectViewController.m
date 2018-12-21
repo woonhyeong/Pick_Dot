@@ -45,7 +45,14 @@
 }
 #pragma mark - Tap Gesture
 - (void)dismissView {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [UIView animateWithDuration:.25 animations:^{
+        self.view.transform = CGAffineTransformMakeScale(1.5, 1.5);
+        self.view.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        if (finished) {
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }
+    }];
 }
 #pragma mark - IBAction methods
 - (IBAction)createButtonTouched:(UIButton *)sender {

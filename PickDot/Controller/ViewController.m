@@ -245,9 +245,11 @@
     
     [self presentViewController:_saveSelectVC animated:NO completion:^{
         self->_saveSelectVC.view.alpha = 0;
+        self->_saveSelectVC.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
         
         [UIView animateWithDuration:0.5 animations:^{
             self->_saveSelectVC.view.alpha = 1;
+            self->_saveSelectVC.view.transform = CGAffineTransformMakeScale(1, 1);
         }];
     }];
 }
@@ -261,9 +263,11 @@
     
     [self presentViewController:_areaSelectVC animated:NO completion:^{
         self->_areaSelectVC.view.alpha = 0;
+        self->_areaSelectVC.view.transform = CGAffineTransformMakeScale(1.3, 1.3);
         
         [UIView animateWithDuration:0.5 animations:^{
             self->_areaSelectVC.view.alpha = 1;
+            self->_areaSelectVC.view.transform = CGAffineTransformMakeScale(1, 1);
         }];
     }];
 }
