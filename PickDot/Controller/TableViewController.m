@@ -21,6 +21,7 @@
     [self.view.layer setBorderWidth:1.0f];
     [self.view.layer setBorderColor:[UIColor blackColor].CGColor];
     [self.view setHidden:YES];
+    [self.tableView setBounces:NO];
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
     
