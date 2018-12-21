@@ -57,6 +57,7 @@
     [self.scrollView setShowsVerticalScrollIndicator:NO];
     [self.scrollView setShowsHorizontalScrollIndicator:NO];
     [self.scrollView setBounces:NO];
+    [self.scrollView setBouncesZoom:NO];
 
     [self.view addSubview:self.colorPickerView];
     [self loadTableViewController];
