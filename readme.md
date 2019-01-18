@@ -1,8 +1,8 @@
 # Pick Dot
 This app supports pixel art editor.  
 
-## Description
-If complete this app, I will add detailed description about Pick Dot.
+## UI
+<center><img src="/ReadmeImage/UI16.png"></center>
 
 ## Various Functions
 ### Color
@@ -13,8 +13,15 @@ Also, support color picker using open source
 Support minimum 20x20 matrix to maximum 50x50 matrix.
 I'm planning to support maximum 100x100 matrix.
 
-### Save function
-Support local store. 
+### Save & Load function
+Support to local store and load. 
 
+### Export by PNG
+Support to export pixel by PNG image.
 
+## More functions to be added
+### Draw pixels by drag.
 
+### Preview entire image.
+
+### Switch screen to selected pixel screen when zooming 
