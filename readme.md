@@ -1,11 +1,8 @@
 # Pick Dot
 This app supports pixel art editor.  
 
-## Description
-If complete this app, I will add detailed description about Pick Dot.
-
 ## UI
-
+<center><img src="/ReadmeImage/UI16.png"></center>
 
 ## Various Functions
 ### Color
