@@ -8,7 +8,6 @@
 
 #import "PixelView.h"
 @interface PixelView()
-@property (nonatomic) UIButton* button;
 @end
 
 @implementation PixelView
@@ -40,6 +39,7 @@
 - (void)drawSelfView:(NSString*)rgbString {
     
     UIButton* button = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 20)];
+    [button setBackgroundColor:[UIColor clearColor]];
     [button addTarget:self.vcDelegate action:@selector(pixelTouch:) forControlEvents:UIControlEventTouchUpInside];
 //    [button addTarget:self.vcDelegate action:@selector(buttonTouched:) forControlEvents:UIControlEventTouchUpInside];
     NSArray *comps = [rgbString componentsSeparatedByString:@":"];

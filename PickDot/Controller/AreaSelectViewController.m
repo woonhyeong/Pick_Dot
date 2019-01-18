@@ -35,7 +35,7 @@
     [self.view.layer setCornerRadius:5];
     [self.createView.layer setBorderColor:[UIColor colorWithRed:64.0f/255.0f green:177.0f/255.0f blue:129.0f/255.0f alpha:1.0f].CGColor];
     [self.createView.layer setBorderWidth:4.0f];
-    [self.sizeSelectView.layer setBorderWidth:4.0f];
+    [self.sizeSelectView.layer setBorderWidth:3.0f];
     [self.sizeSelectView.layer setBorderColor:[UIColor colorWithRed:64.0/255.0f green:177.0/255.0f blue:129.0/255.0f alpha:1.0f].CGColor];
     
     for (UIButton* b in self.sizeSelectView.subviews) {

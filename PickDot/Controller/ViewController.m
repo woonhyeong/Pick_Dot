@@ -23,7 +23,9 @@
 @property (weak, nonatomic) IBOutlet UIButton *rightButton;
 @property (weak, nonatomic) IBOutlet UIButton *downButton;
 @property (weak, nonatomic) IBOutlet UIButton *upButton;
-
+@property (strong, nonatomic) NSTimer *timer;
+@property (strong, nonatomic) NSTimer *penTimer;
+@property (strong, nonatomic) NSTimer *eraserTimer;
 @end
 
 @implementation ViewController
@@ -46,6 +48,9 @@
         [userDefaults setObject:requestJson forKey:@"files"];
     }
 
+    /*
+     ScrollView initiation
+     */
     self.scrollView.delegate = self;
     [self.scrollView.layer setBorderWidth:0.5f];
     [self.scrollView.layer setBorderColor:[UIColor blackColor].CGColor];
@@ -59,10 +64,173 @@
     [self.scrollView setBounces:NO];
     [self.scrollView setBouncesZoom:NO];
 
+    /*
+     Press Gesture to Direction Button
+     */
+    UILongPressGestureRecognizer *leftPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidLeftPress:)];
+    [self.leftButton addGestureRecognizer:leftPress];
+    UILongPressGestureRecognizer *rightPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidRightPress:)];
+    [self.rightButton addGestureRecognizer:rightPress];
+    UILongPressGestureRecognizer *upPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidUpPress:)];
+    [self.upButton addGestureRecognizer:upPress];
+    UILongPressGestureRecognizer *downPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidDownPress:)];
+    [self.downButton addGestureRecognizer:downPress];
+    
+    /*
+     Press Gesture to Pen Button & Eraser Button
+     */
+     UILongPressGestureRecognizer *penPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidPenPress:)];
+    [self.buttonPen addGestureRecognizer:penPress];
+    UILongPressGestureRecognizer *eraserPress = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:@selector(buttonDidEraserPress:)];
+    [self.buttonEraser addGestureRecognizer:eraserPress];
+    
     [self.view addSubview:self.colorPickerView];
     [self loadTableViewController];
 }
 
+#pragma mark - UILongPressGestureRecognizer methods
+- (void)buttonDidLeftPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(leftPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)buttonDidRightPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(rightPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)buttonDidUpPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(upPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)buttonDidDownPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.timer = [NSTimer timerWithTimeInterval:0.1 target:self selector:@selector(downPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.timer invalidate];
+            self.timer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)buttonDidPenPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.penTimer = [NSTimer timerWithTimeInterval:0.05 target:self selector:@selector(penPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.penTimer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.penTimer invalidate];
+            self.penTimer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)buttonDidEraserPress:(UILongPressGestureRecognizer*)gesture
+{
+    switch (gesture.state) {
+        case UIGestureRecognizerStateBegan:
+        {
+            self.eraserTimer = [NSTimer timerWithTimeInterval:0.05 target:self selector:@selector(eraserPress)userInfo:nil repeats:YES];
+            NSRunLoop * theRunLoop = [NSRunLoop currentRunLoop];
+            [theRunLoop addTimer:self.eraserTimer forMode:NSDefaultRunLoopMode];
+        }
+            break;
+        case UIGestureRecognizerStateEnded:
+        {
+            [self.eraserTimer invalidate];
+            self.eraserTimer = nil;
+        }
+            break;
+        default:
+            break;
+    }
+}
+- (void)rightPress{
+    [self.contentView moveSelectedPixelAtIndex:Right];
+}
+- (void)leftPress{
+    [self.contentView moveSelectedPixelAtIndex:Left];
+}
+- (void)upPress{
+    [self.contentView moveSelectedPixelAtIndex:Up];
+}
+- (void)downPress{
+    [self.contentView moveSelectedPixelAtIndex:Down];
+}
+- (void)penPress{
+    [self.contentView setSelectedColor:self.selectedColor];
+    [self.contentView drawColorToPixel];
+}
+- (void)eraserPress{
+    [self.contentView setSelectedColor:[UIColor whiteColor]];
+    [self.contentView drawColorToPixel];
+}
+
+#pragma mark - ScrollView Delegate methods
 - (UIView *)viewForZoomingInScrollView:(UIScrollView *)scrollView {
     return self.contentView;
 }
@@ -238,13 +406,16 @@
 
 -(void)exportPixelToJPEG {
     [self.contentView prevScreenShotPixel];
+    
     UIGraphicsBeginImageContextWithOptions(self.contentView.bounds.size,NO, 0.0);
     [self.contentView drawViewHierarchyInRect:self.contentView.bounds afterScreenUpdates:YES];
     UIImage * snapshotImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
-    NSData *jpegData = UIImageJPEGRepresentation (snapshotImage, 1.0);
-    snapshotImage = [UIImage imageWithData:jpegData];
+    
+    NSData *pngData = UIImagePNGRepresentation(snapshotImage);
+    snapshotImage = [UIImage imageWithData:pngData];
     UIImageWriteToSavedPhotosAlbum(snapshotImage, self, nil, nil );
+    
     [self.contentView afterScreenShotPixel];
 }
 
